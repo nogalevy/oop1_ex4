@@ -18,6 +18,7 @@ endif ()
 add_executable (${CMAKE_PROJECT_NAME} ) # add here 'WIN32' to run without terminal
 
 add_subdirectory (include)
+add_subdirectory (images)
 add_subdirectory (src)
 
 set (SFML_STATIC_LIBRARIES TRUE)

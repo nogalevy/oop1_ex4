@@ -1,0 +1,1 @@
+configure_file("texture1.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
