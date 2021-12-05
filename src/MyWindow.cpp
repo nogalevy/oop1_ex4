@@ -1,5 +1,12 @@
 #include "MyWindow.h"
 
+
+MyWindow::MyWindow() : m_window(sf::VideoMode(200, 200), "The Window"), m_board(), m_menu() //make 200 const 
+{
+    int windowHeight = m_menu.getHeight() + m_board.getSize();
+    m_window.setSize(sf::Vector2u(m_board.getSize(), windowHeight));
+}
+
 void MyWindow::run()
 {
     while (m_window.isOpen())
@@ -48,6 +55,10 @@ void MyWindow::run()
             }
         }
     }
+}
+
+void MyWindow::handleClick(const sf::Event::MouseButtonEvent& event)
+{
 }
 
 

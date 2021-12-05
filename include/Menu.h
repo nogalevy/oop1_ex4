@@ -1,9 +1,17 @@
+#pragma once
+
+
 class Menu
 {
 public:
 	Menu();
-
+	void setSize(int height, int width);
+	int getHeight();
 private:
+	//Members
+	int m_height;
+	int m_width;
+	// GameObjects...
 
 };
 
@@ -23,3 +31,11 @@ private:
 		King ....
 
 */
+
+class GameObjects
+{
+public:
+
+private:
+
+};

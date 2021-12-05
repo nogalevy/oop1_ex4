@@ -1,5 +1,6 @@
 #pragma once
-
+#include "Board.h"
+#include "Menu.h"
 #include <SFML/Graphics.hpp>
 
 
@@ -11,9 +12,10 @@ public:
 
 private:
     void handleClick(const sf::Event::MouseButtonEvent& event);
-
-    sf::RenderWindow m_window;
     //sf::CircleShape m_shape;
+
+    //Members
+    sf::RenderWindow m_window;
     Menu m_menu; 
     Board m_board;
 };
