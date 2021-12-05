@@ -1,5 +1,9 @@
 #pragma once
-#include "MyWindow.h"
+
+#include <vector>
+#include <SFML/Graphics.hpp>
+
+class MyWindow;
 
 class Board
 {
@@ -9,13 +13,13 @@ public:
 	//Menu Buttons
 	void saveBoard(); //from save button on menu
 	void clearBoard(); // from clear button on menu
-	void deleteObjectOnBoard(); //from delete object on menu
+	void deleteObjectOnBoard(int row, int col); //from delete object on menu
 
 	//Access Functions
 	int getSize();
 	
+	void drawBoard(sf::RenderWindow &window)const;
 	//other Functions
-	//
 	
 
 private:

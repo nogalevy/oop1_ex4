@@ -1,28 +1,27 @@
 #include "MyWindow.h"
 
 
-MyWindow::MyWindow() : m_window(sf::VideoMode(200, 200), "The Window"), m_board(), m_menu() //make 200 const 
+MyWindow::MyWindow() : m_window(sf::VideoMode(500, 500), "The Window"), m_board(), m_menu() //make 200 const 
 {
-    int windowHeight = m_menu.getHeight() + m_board.getSize();
-    m_window.setSize(sf::Vector2u(m_board.getSize(), windowHeight));
+    //int windowHeight = m_menu.getHeight() + m_board.getSize();
+    //m_window.setSize(sf::Vector2u(m_board.getSize(), windowHeight));
 }
 
 void MyWindow::run()
 {
     while (m_window.isOpen())
     {
-        m_window.clear();
+        //m_window.clear();
+        
         
        // draw();
             /*
                 m_menu.draw(m_window);
-                m_board.draw(m_window);
                      for (auto i = size_t(0); i < m_texts.size(); ++i)
                     {
                         window.draw(m_texts[i]);
                     }     
             */
-        m_window.display();
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))
         {
@@ -54,6 +53,10 @@ void MyWindow::run()
             }
             }
         }
+        m_window.clear();
+
+        m_board.drawBoard(m_window);
+        m_window.display();
     }
 }
 
