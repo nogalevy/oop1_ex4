@@ -19,13 +19,18 @@ Board::Board() :m_size(0)
 	//file.open(fileName);
 
 	sf::Texture texture;
-	texture.loadFromFile("orc.png");
+	//sf::Image image; 
+    //image.loadFromFile("texture1.jpg");
+	//texture.loadFromImage(image);
+	texture.loadFromFile("texture1.jpg");
 
 	size = 5; //size of rows and cols
 	int square_size = 100;//500 / size; //calc the size of each square
 	sf::RectangleShape rect1(sf::Vector2f(square_size, square_size));
-	//std::vector<std::vector<sf::RectangleShape>> mat(size, std::vector<sf::RectangleShape>(size, rect1));
-	m_mat.resize(size, std::vector<sf::RectangleShape>(size, rect1));
+	std::vector<std::vector<sf::RectangleShape>> mat(size, std::vector<sf::RectangleShape>(size, rect1));
+
+	//m_mat.resize(size, std::vector<sf::RectangleShape>(size, rect1));
+	m_mat = mat;
 
 
 	for (int i = 0; i < size; i++)
@@ -33,6 +38,9 @@ Board::Board() :m_size(0)
 		for (int j = 0; j < size; j++)
 		{
 			m_mat[i][j].setPosition(i * square_size, j * square_size);
+			m_mat[i][j].setFillColor(sf::Color::Color(221, 204, 255));
+			m_mat[i][j].setOutlineThickness(10);
+			m_mat[i][j].setOutlineColor(sf::Color::Color(178, 166, 201));
 			m_mat[i][j].setTexture(&texture);
 		}
 	}
