@@ -18,15 +18,22 @@ Board::Board() :m_size(0)
 
 	//file.open(fileName);
 
-	sf::Texture texture;
+	//sf::Texture texture;
 	//sf::Image image; 
     //image.loadFromFile("texture1.jpg");
 	//texture.loadFromImage(image);
-	texture.loadFromFile("texture1.jpg");
+	//texture.loadFromFile("texture1.jpg");
+
+	if (!texture.loadFromFile("texture1.jpg"))
+	{
+		std::cerr << "image not found\n";
+	}
 
 	size = 5; //size of rows and cols
 	int square_size = 100;//500 / size; //calc the size of each square
 	sf::RectangleShape rect1(sf::Vector2f(square_size, square_size));
+	
+	//rect1.setTexture(&texture);
 	std::vector<std::vector<sf::RectangleShape>> mat(size, std::vector<sf::RectangleShape>(size, rect1));
 
 	//m_mat.resize(size, std::vector<sf::RectangleShape>(size, rect1));
@@ -38,9 +45,11 @@ Board::Board() :m_size(0)
 		for (int j = 0; j < size; j++)
 		{
 			m_mat[i][j].setPosition(i * square_size, j * square_size);
-			m_mat[i][j].setFillColor(sf::Color::Color(221, 204, 255));
-			m_mat[i][j].setOutlineThickness(10);
-			m_mat[i][j].setOutlineColor(sf::Color::Color(178, 166, 201));
+			//m_mat[i][j].setFillColor(sf::Color::Color(23,45,56));
+			m_mat[i][j].setOutlineThickness(6);
+			m_mat[i][j].setOutlineColor(sf::Color::Black);
+
+			//m_mat[i][j].setOrigin(m_mat[i][j].getSize().x / 2, m_mat[i][j].getSize().y / 2); //?
 			m_mat[i][j].setTexture(&texture);
 		}
 	}
@@ -114,12 +123,20 @@ int Board::getSize()
 	return m_size;
 }
 
-void Board::drawBoard(sf::RenderWindow &window)const
+void Board::drawBoard(sf::RenderWindow &window)
 {
+	sf::Texture texture;
+
+	if (!texture.loadFromFile("king.png"))
+	{
+		std::cerr << "image not found\n";
+	}
+
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
+			//m_mat[i][j].setTexture(&texture);
 			window.draw(m_mat[i][j]);
 		}
 	}
