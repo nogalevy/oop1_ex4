@@ -3,77 +3,53 @@
 #include <fstream> //for external files
 #include <stdlib.h> //for exit
 #include <iostream>
+#include <string>
 
 const char fileName[] = "level.txt";
+const int NUM_OF_ICONS = 13;
+const std::string picNames[NUM_OF_ICONS] = { "brickwall_0", "brickwall_1", "fire", "gate","king", "orc", "portal", "queen", "thief", "throne",
+									"wall", "warrior", "wizard" }; //TOOK OUT KEY
 
 Board::Board() :m_size(0)
 {
-	//check if file empty
-	//if not empty get size
-	//set size/ vector
-	//read board into vector of rectangles (setTexture each time)
-
 	int size;
-	//std::ifstream file;
 
-	//file.open(fileName);
+	// filling texture vector
+	m_textures.resize(NUM_OF_ICONS);
+	for (int i = 0; i < NUM_OF_ICONS; i++)
+		m_textures[i].loadFromFile(picNames[i] + ".png");
 
-	//sf::Texture texture;
-	//sf::Image image; 
-    //image.loadFromFile("texture1.jpg");
-	//texture.loadFromImage(image);
-	//texture.loadFromFile("texture1.jpg");
+	//checking if file is empty
+	std::ifstream file;
+	file.open(fileName);
 
-	if (!texture.loadFromFile("texture1.jpg"))
+	if (file.is_open())
 	{
-		std::cerr << "image not found\n";
-	}
-
-	size = 5; //size of rows and cols
-	int square_size = 100;//500 / size; //calc the size of each square
-	sf::RectangleShape rect1(sf::Vector2f(square_size, square_size));
-	
-	//rect1.setTexture(&texture);
-	std::vector<std::vector<sf::RectangleShape>> mat(size, std::vector<sf::RectangleShape>(size, rect1));
-
-	//m_mat.resize(size, std::vector<sf::RectangleShape>(size, rect1));
-	m_mat = mat;
-
-
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
-			m_mat[i][j].setPosition(i * square_size, j * square_size);
-			//m_mat[i][j].setFillColor(sf::Color::Color(23,45,56));
-			m_mat[i][j].setOutlineThickness(6);
-			m_mat[i][j].setOutlineColor(sf::Color::Black);
-
-			//m_mat[i][j].setOrigin(m_mat[i][j].getSize().x / 2, m_mat[i][j].getSize().y / 2); //?
-			m_mat[i][j].setTexture(&texture);
-		}
-	}
-
-	/*if (!file.is_open())
-	{
-		std::cout << "Please enter board size: ";
-		std::cin >> size;
-		clearBoard();
+		file >> size;
+		//read from file into matrix
 	}
 	else
-		file >> size;
-		//fill board from file
-
-	m_size = size;
-
-	if (size != 0)
 	{
-		m_mat.resize(size, std::vector<sf::RectangleShape>(size));
-		sf::Texture texture;
-		texture.loadFromFile("texture1.jpg");
-	}
-	*/
+		std::cin >> size;
 
+		//initialize matrix
+		int square_size = 500 / size;
+		sf::RectangleShape rect1(sf::Vector2f(square_size, square_size));
+		std::vector<std::vector<sf::RectangleShape>> mat(size, std::vector<sf::RectangleShape>(size, rect1));
+		m_mat = mat; //assign 
+
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				m_mat[i][j].setPosition(i * square_size, j * square_size);
+				m_mat[i][j].setOutlineThickness(6);
+				m_mat[i][j].setOutlineColor(sf::Color::Black);
+				m_mat[i][j].setTexture(&m_textures[8]);
+			}
+		}
+	}
+	m_size = size;
 }
 
 void Board::saveBoard()
@@ -125,16 +101,16 @@ int Board::getSize()
 
 void Board::drawBoard(sf::RenderWindow &window)
 {
-	sf::Texture texture;
+	//sf::Texture texture;
 
-	if (!texture.loadFromFile("king.png"))
+	/*if (!texture.loadFromFile("king.png"))
 	{
 		std::cerr << "image not found\n";
-	}
+	}*/
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < m_size ; i++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (int j = 0; j < m_size; j++)
 		{
 			//m_mat[i][j].setTexture(&texture);
 			window.draw(m_mat[i][j]);
