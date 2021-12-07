@@ -3,8 +3,9 @@
 
 MyWindow::MyWindow() : m_window(sf::VideoMode(760, 760), "The Window" , sf::Style::Close | sf::Style::Titlebar), m_board(), m_menu() //make 200 const
 {
+    //m_board(m_menu.getHeight());
     int windowHeight = m_menu.getHeight() + m_board.getSize();
-    m_window.setSize(sf::Vector2u(m_board.getSize(), windowHeight));
+    m_window.setSize(sf::Vector2u(760 , windowHeight));
 }
 
 void MyWindow::run()
@@ -20,8 +21,8 @@ void MyWindow::run()
 
         m_window.clear(sf::Color::White);
 
-        m_board.drawBoard(m_window);
         m_menu.drawMenu(m_window);
+        m_board.drawBoard(m_window);
 
         m_window.display();
     }
