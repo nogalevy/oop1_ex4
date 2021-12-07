@@ -1,10 +1,11 @@
 #include "MyWindow.h"
 
 
-MyWindow::MyWindow() : m_window(sf::VideoMode(500, 500), "The Window"), m_board(), m_menu() //make 500 const 
+MyWindow::MyWindow() : m_window(sf::VideoMode(760, 760), "The Window" , sf::Style::Close | sf::Style::Titlebar), m_board(), m_menu() //make 200 const
 {
-    //int windowHeight = m_menu.getHeight() + m_board.getSize();
-    //m_window.setSize(sf::Vector2u(m_board.getSize(), windowHeight));
+    //m_board(m_menu.getHeight());
+    int windowHeight = m_menu.getHeight() + m_board.getSize();
+    m_window.setSize(sf::Vector2u(760 , windowHeight));
 }
 
 void MyWindow::run()
@@ -20,6 +21,7 @@ void MyWindow::run()
 
         m_window.clear(sf::Color::White);
 
+        m_menu.drawMenu(m_window);
         m_board.drawBoard(m_window);
 
         m_window.display();
@@ -30,14 +32,14 @@ void MyWindow::run()
 //{
 //    while (m_window.isOpen())
 //    {
-//        //m_window.clear();        
+//        //m_window.clear();
 //       // draw();
 //        /*
 //        m_menu.draw(m_window);
 //                for (auto i = size_t(0); i < m_texts.size(); ++i)
 //            {
 //                window.draw(m_texts[i]);
-//            }     
+//            }
 //        */
 //
 //        if (auto event = sf::Event{}; m_window.waitEvent(event))
@@ -59,14 +61,14 @@ void MyWindow::run()
 //            //            { event.mouseButton.x, event.mouseButton.y });
 //
 //            //        */
-//            //        
+//            //
 //            //        // check position - Board ? Menu ?
 //            //        // no need to check x
 //            //        // save in const the menu border - topright + bottomleft ?
 //            //        // borad depend on the current board size
 //
 //            //    }
-//            //   
+//            //
 //            //}
 //            //}
 //        }
@@ -87,5 +89,3 @@ void MyWindow::run()
 void MyWindow::handleClick(const sf::Event::MouseButtonEvent& event)
 {
 }
-
-

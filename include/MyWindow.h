@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 
+
 class MyWindow
 {
 public:
@@ -18,6 +19,7 @@ private:
     sf::RenderWindow m_window;
     Menu m_menu; 
     Board m_board;
+   
 };
 
 /*

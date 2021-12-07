@@ -98,7 +98,7 @@ Board::Board() :m_size(0)
 			{
 				m_mat[row][col].setOutlineThickness(0.5);
 				m_mat[row][col].setOutlineColor(sf::Color::Black);
-				m_mat[row][col].setPosition(col * square_size, row * square_size);
+				m_mat[row][col].setPosition(col * square_size , row * square_size + 200);
 				
 
 				switch (fileBoard[row][col])
@@ -159,7 +159,7 @@ Board::Board() :m_size(0)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				m_mat[i][j].setPosition(i * square_size, j * square_size);
+				m_mat[i][j].setPosition(i * square_size + 500, j * square_size);
 				//m_mat[i][j].setOutlineThickness(2);
 				//m_mat[i][j].setOutlineColor(sf::Color::Black);
 				m_mat[i][j].setTexture(&m_textures[2]); //take out
