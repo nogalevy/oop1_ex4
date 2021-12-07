@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "numof.h"
+#include "view_constants.h"
 
 class MyWindow;
 

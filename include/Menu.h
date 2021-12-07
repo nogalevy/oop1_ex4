@@ -1,15 +1,11 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "view_constants.h"
+#include "numof.h"
+#include "colors.h"
 
-const int NUM_OF_ICONS = 10;
 
-
-const int DEFAULT_WIDTH = 500;
-const int DEFAULT_HEIGHT = 500;
-
-const int DEFAULT_BTN_WIDTH = DEFAULT_WIDTH / NUM_OF_ICONS;
-const int DEFAULT_BTN_HEIGHT = DEFAULT_BTN_WIDTH;
 
 class Menu
 {
@@ -22,6 +18,7 @@ public:
 
 private:
 	//Members
+	sf::Color color = sf::Color::Color(24, 2, 134);
 	int m_height;
 	int m_width;
 	sf::RectangleShape m_container;
