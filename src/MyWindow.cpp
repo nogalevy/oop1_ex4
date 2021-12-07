@@ -8,7 +8,7 @@ MyWindow::MyWindow() : m_window(sf::VideoMode(500, 500), "The Window"), m_board(
 }
 
 void MyWindow::run()
-{   
+{
     while (m_window.isOpen())
     {
         sf::Event event;
@@ -18,7 +18,7 @@ void MyWindow::run()
                 m_window.close();
         }
 
-        m_window.clear();
+        m_window.clear(sf::Color::White);
 
         m_board.drawBoard(m_window);
 
