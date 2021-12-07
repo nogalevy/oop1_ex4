@@ -56,3 +56,35 @@ void Menu::drawMenu(sf::RenderWindow& window) const
 		window.draw(m_characters_btns[i]);
 	}
 }
+
+bool Menu::isContain(const sf::Vector2f& location)
+{
+	return m_container.getGlobalBounds().contains(location);
+}
+
+int Menu::handleClick(const sf::Vector2f& location, int last_active)
+{
+
+	for (int i = 0; i < NUM_OF_ICONS; i++)
+	{
+		if (m_characters_btns[i].getGlobalBounds().contains(location))
+		{
+
+			if (last_active < NUM_OF_ICONS && last_active >= 0)
+			{
+				m_characters_btns[last_active].setOutlineThickness(0);
+				//m_characters_btns[last_active].setOutlineColor(sf::Color::Transparent);
+
+			}
+			m_characters_btns[i].setOutlineThickness(5);
+			m_characters_btns[i].setOutlineColor(sf::Color::Color(12, 123, 70));
+
+				//m_characters_btns[last_active].setFillColor(sf::Color::White);
+
+			return i;
+		}
+
+	}
+	
+	
+}

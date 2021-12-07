@@ -14,10 +14,13 @@ public:
     void run();
 
 private:
-    void handleClick(const sf::Event::MouseButtonEvent& event);
+    void handleClick(const sf::Vector2f& location);
+    int checkLocation(const sf::Vector2f& location);
+
     //sf::CircleShape m_shape;
 
     //Members
+    int m_curr_char;
     sf::RenderWindow m_window;
     Menu m_menu; 
     Board m_board;
