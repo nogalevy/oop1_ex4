@@ -5,7 +5,7 @@
 int main()
 {
     auto my_window = MyWindow(); // need
-
+   
     my_window.run(); // need
 
     return EXIT_SUCCESS;

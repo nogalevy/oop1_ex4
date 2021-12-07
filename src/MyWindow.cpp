@@ -1,9 +1,9 @@
 #include "MyWindow.h"
 
 
-MyWindow::MyWindow() : m_window(sf::VideoMode(500, 500), "The Window"), m_board(), m_menu() //make 200 const 
+MyWindow::MyWindow() : m_window(sf::VideoMode(760, 760), "The Window" , sf::Style::Close | sf::Style::Titlebar), m_board(), m_menu() //make 200 const 
 {
-    //int windowHeight = m_menu.getHeight() + m_board.getSize();
+    int windowHeight = m_menu.getHeight() + m_board.getSize();
     //m_window.setSize(sf::Vector2u(m_board.getSize(), windowHeight));
 }
 
@@ -23,7 +23,8 @@ void MyWindow::run()
 
         m_window.clear();
 
-        m_board.drawBoard(m_window);
+        //m_board.drawBoard(m_window);
+        m_menu.drawMenu(m_window);
 
         m_window.display();
     }
