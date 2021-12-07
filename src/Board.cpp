@@ -6,11 +6,11 @@
 #include <string>
 #include <string.h>
 
-enum Icons { KING, WIZARD, WARRIOR, THIEF, WALL, GATE, FIRE, ORC, PORTAL, THRONE };
+//enum Icons { KING, WIZARD, WARRIOR, THIEF, WALL, GATE, FIRE, ORC, PORTAL, THRONE };
 //const std::string fileName = "level.txt";
 const char* fileName = "level.txt";
-const int NUM_OF_ICONS = 10;
-const std::string picNames[NUM_OF_ICONS] = {"king", "wizard", "warrior", "thief", "brickwall_2", "gate", "fire", "orc", "portal", "throne"}; //TOOK OUT KEY
+//const int NUM_OF_ICONS = 10;
+//const std::string picNames[NUM_OF_ICONS] = {"king", "wizard", "warrior", "thief", "brickwall_2", "gate", "fire", "orc", "portal", "throne"}; //TOOK OUT KEY
 
 Board::Board() :m_size(0)
 {
@@ -19,7 +19,7 @@ Board::Board() :m_size(0)
 	// filling texture vector
 	m_textures.resize(NUM_OF_ICONS);
 	for (int i = 0; i < NUM_OF_ICONS; i++)
-		m_textures[i].loadFromFile(picNames[i] + ".png");
+		m_textures[i].loadFromFile(PIC_NAMES[i] + ".png");
 
 	//checking if file is empty
 	//std::ifstream file;
@@ -200,7 +200,7 @@ void Board::clearBoard()
 void Board::deleteObjectOnBoard(int row, int col)
 {
 	m_mat[row][col].setTexture(NULL);
-	m_mat[row][col].setFillColor(sf::Color::Black);
+	m_mat[row][col].setFillColor(sf::Color::White);
 }
 
 int Board::getSize()

@@ -2,33 +2,33 @@
 
 //-------------------------------------------------
 
-Menu::Menu() : m_width(DEFAULT_WIDTH), m_height(DEFAULT_HEIGHT) ,m_container(sf::Vector2f(1280, 760))//make 200 consts
+Menu::Menu() : m_width(D_MENU_WIDTH), m_height(D_MENU_HEIGHT) ,m_container(sf::Vector2f(1280, D_BTN_HEIGHT + 20))//make 200 consts
 {
-	m_container.setFillColor(sf::Color::Color(23, 45, 65));
+	m_container.setFillColor(MENU_COLOR);
 	m_texture.resize(NUM_OF_ICONS);
 
 	for (int i = 0; i < NUM_OF_ICONS; ++i)
-		m_texture[i].loadFromFile(m_char_names[i] + ".png");
+		m_texture[i].loadFromFile(PIC_NAMES[i] + ".png");
 
 
 	m_characters_btns.resize(NUM_OF_ICONS);
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 	{
-		m_characters_btns[i].setSize(sf::Vector2f(DEFAULT_BTN_WIDTH, DEFAULT_BTN_HEIGHT));
+		m_characters_btns[i].setSize(sf::Vector2f(D_BTN_WIDTH, D_BTN_HEIGHT));
 		m_characters_btns[i].setTexture(&m_texture[i]);
-		m_characters_btns[i].setPosition(i * DEFAULT_BTN_WIDTH, 0);
+		m_characters_btns[i].setPosition(i * D_BTN_WIDTH, 0);
 	}
 }
 
 //-------------------------------------------------
 
-Menu::Menu(int width) : m_container(sf::Vector2f(width, DEFAULT_HEIGHT)), m_height(DEFAULT_HEIGHT) , m_width(width)
+Menu::Menu(int width) : m_container(sf::Vector2f(width, D_MENU_HEIGHT)), m_height(D_MENU_HEIGHT) , m_width(width)
 {
 	for (int i = 0; i < NUM_OF_ICONS; ++i)
-		m_texture[i].loadFromFile(m_char_names[i] + ".png");
+		m_texture[i].loadFromFile(PIC_NAMES[i] + ".png");
 
 	//check width to do responsive
-	setSize(width, DEFAULT_HEIGHT);
+	setSize(width, D_MENU_HEIGHT);
 }
 
 //-------------------------------------------------
