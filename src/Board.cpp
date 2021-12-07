@@ -7,7 +7,7 @@
 #include <string.h>
 
 enum Icons { KING, WIZARD, WARRIOR, THIEF, WALL, GATE, FIRE, ORC, PORTAL, THRONE };
-//const std::string fileName = "level.txt";
+//const std::string fileName = "level.txt"; //when using file stream
 const char* fileName = "level.txt";
 const int NUM_OF_ICONS = 10;
 const std::string picNames[NUM_OF_ICONS] = {"king", "wizard", "warrior", "thief", "brickwall_2", "gate", "fire", "orc", "portal", "throne"}; //TOOK OUT KEY
@@ -50,12 +50,20 @@ Board::Board() :m_size(0)
 			fileBoard.push_back(line);
 		}*/
 	
+		
 		const int newsize = size;
 		char** fileBoard;
 		fileBoard = new char* [size];
 
 		for (int i = 0; i < size; i++)
 			fileBoard[i] = new char[size];
+		
+
+		//std::vector<std::vector<char>> fileBoard; //this doesnt work
+		//fileBoard.reserve(size);
+		//for (int i = 0; i < size; i++)
+		//	fileBoard[i].reserve(size);
+
 
 		c = getc(file);
 		std::cout << c;
