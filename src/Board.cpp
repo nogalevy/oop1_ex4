@@ -10,7 +10,7 @@ enum Icons { KING, WIZARD, WARRIOR, THIEF, WALL, GATE, FIRE, ORC, PORTAL, THRONE
 //const std::string fileName = "level.txt";
 const char* fileName = "level.txt";
 const int NUM_OF_ICONS = 10;
-const std::string picNames[NUM_OF_ICONS] = {"king", "wizard", "warrior", "thief", "brickwall_1", "gate", "fire", "orc", "portal", "throne"}; //TOOK OUT KEY
+const std::string picNames[NUM_OF_ICONS] = {"king", "wizard", "warrior", "thief", "brickwall_2", "gate", "fire", "orc", "portal", "throne"}; //TOOK OUT KEY
 
 Board::Board() :m_size(0)
 {
@@ -88,7 +88,7 @@ Board::Board() :m_size(0)
 		{
 			for (int col = 0; col < size; col++)
 			{
-				m_mat[row][col].setOutlineThickness(2);
+				m_mat[row][col].setOutlineThickness(0.5);
 				m_mat[row][col].setOutlineColor(sf::Color::Black);
 				m_mat[row][col].setPosition(col * square_size, row * square_size);
 				
