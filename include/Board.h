@@ -18,16 +18,18 @@ public:
 	//Access Functions
 	int getSize();
 	
-	void drawBoard(sf::RenderWindow &window);
 	//other Functions
+	void drawBoard(sf::RenderWindow &window); //works
+	
 	
 
 private:
 	//members
 	int m_size;
-	std::vector<std::vector<sf::RectangleShape>> m_mat; //(size, std::vector<sf::RectangleShape>(size, rect1));
-	//sf::Texture m_objectTexture[10]; //(size, std::vector<sf::RectangleShape>(size, rect1));
-	sf::Texture texture;
+	std::vector<std::vector<sf::RectangleShape>> m_mat;
+	std::vector<sf::Texture> m_textures;
+	//std::vector<std::vector<int>> m_mm;
+
 
 
 };
