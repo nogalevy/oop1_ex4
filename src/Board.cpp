@@ -20,10 +20,6 @@ Board::Board() :m_size(0)
 	m_textures.resize(NUM_OF_ICONS);
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 		m_textures[i].loadFromFile(picNames[i] + ".png");
-
-	//checking if file is empty
-	//std::ifstream file;
-	//file.open(fileName);
 	
 	FILE* file = fopen(fileName, "r");
 
@@ -36,33 +32,12 @@ Board::Board() :m_size(0)
 		//read from file into matrix
 		std::cout << size << "\n";
 		
-		/*
-		//defining vector to read board from file
-		std::vector<std::string> fileBoard;
-		fileBoard.reserve(size); //setting size
-		std::string line; //defining line to read
-	
-		std::getline(file, line); //eat empty space?
-		for (int i = 0; i < size; i++)
-		{
-			std::getline(file, line); //read line from file
-			std::cout << line << "\n";
-			fileBoard.push_back(line);
-		}*/
-	
-		
 		const int newsize = size;
 		char** fileBoard;
 		fileBoard = new char* [size];
 
 		for (int i = 0; i < size; i++)
 			fileBoard[i] = new char[size];
-		
-
-		//std::vector<std::vector<char>> fileBoard; //this doesnt work
-		//fileBoard.reserve(size);
-		//for (int i = 0; i < size; i++)
-		//	fileBoard[i].reserve(size);
 
 
 		c = getc(file);
@@ -80,7 +55,7 @@ Board::Board() :m_size(0)
 				std::cout << c;
 				fileBoard[row][col] = c;
 			}
-			getc(file);
+			c = getc(file);
 		
 			std::cout << "\n";
 		}
@@ -171,30 +146,49 @@ Board::Board() :m_size(0)
 
 void Board::saveBoard()
 {
-	//take mat size
-	//write size on file (open file for writing)
-	//print vector of rectangles to file
 
-	std::ofstream file;
-	file.open(fileName); //perror?
+	//opening file or creating file (overwrites if exists)
+	FILE* file = fopen(fileName, "w+"); //T: Q: where does it open if it doesnt exist? can we choose?
+
+	//creating array to print into file
+	const int newsize = m_size;
+	char** fileBoard;
+	fileBoard = new char* [m_size];
+	
+	for (int i = 0; i < m_size; i++)
+		fileBoard[i] = new char[m_size];
 
 	//printing size to file
-	file << this->getSize() << "\n";
+	fprintf(file, "%d\n", m_size);
 
-	//printing board to file
-	for (int i = 0; i < this->getSize(); i++)
+	for (int i = 0; i < m_size; i++)
 	{
-		for (int j = 0; j < this->getSize(); j++)
+		for (int j = 0; j < m_size; j++)
 		{
-			/*
-			switch (m_mat[i][j].getTexture())
-			{
-				case 
-			}
-			*/
+			
+			if (m_mat[i][j].getTexture() == &m_textures[KING])
+				fprintf(file, "K");
+			else if (m_mat[i][j].getTexture() == &m_textures[WIZARD])
+				fprintf(file, "M");
+			else if (m_mat[i][j].getTexture() == &m_textures[WARRIOR])
+				fprintf(file, "W");
+			else if (m_mat[i][j].getTexture() == &m_textures[THIEF])
+				fprintf(file, "T");
+			else if (m_mat[i][j].getTexture() == &m_textures[WALL])
+				fprintf(file, "=");
+			else if (m_mat[i][j].getTexture() == &m_textures[GATE])
+				fprintf(file, "#");
+			else if (m_mat[i][j].getTexture() == &m_textures[FIRE])
+				fprintf(file, "*");
+			else if (m_mat[i][j].getTexture() == &m_textures[ORC])
+				fprintf(file, "!");
+			else if (m_mat[i][j].getTexture() == &m_textures[PORTAL])
+				fprintf(file, "X");
+			else if (m_mat[i][j].getTexture() == &m_textures[THRONE])
+				fprintf(file, "@");			
 		}
+		fprintf(file, "\n");
 	}
-
 }
 
 void Board::clearBoard()
@@ -208,7 +202,7 @@ void Board::clearBoard()
 void Board::deleteObjectOnBoard(int row, int col)
 {
 	m_mat[row][col].setTexture(NULL);
-	m_mat[row][col].setFillColor(sf::Color::Black);
+	//m_mat[row][col].setFillColor(sf::Color::Black);
 }
 
 int Board::getSize()
