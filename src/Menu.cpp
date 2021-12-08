@@ -85,6 +85,7 @@ int Menu::handleClick(const sf::Vector2f& location, int last_active)
 		}
 
 	}
+	return -1; // press on empty space
 	
 	
 }

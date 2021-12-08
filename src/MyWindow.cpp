@@ -116,7 +116,6 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 {
     if (checkLocation(location) == MENU)
     {
-        std::cout << "on menu\n";
         m_curr_char = m_menu.handleClick(location, m_curr_char);
         std::cout << "press on " << PIC_NAMES[m_curr_char] << std::endl;
 
