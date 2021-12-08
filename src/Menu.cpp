@@ -1,8 +1,9 @@
 #include "Menu.h"
 
+
 //-------------------------------------------------
 
-Menu::Menu() : m_width(D_MENU_WIDTH), m_height(D_MENU_HEIGHT) ,m_container(sf::Vector2f(1280, D_BTN_HEIGHT + 20))//make 200 consts
+Menu::Menu() : m_width(D_MENU_WIDTH), m_height(D_MENU_HEIGHT) ,m_container(sf::Vector2f(1280, CON_HEIGHT))//make 200 consts
 {
 	m_container.setFillColor(MENU_COLOR);
 	m_texture.resize(NUM_OF_ICONS + GAME_BTN_NUM);
@@ -27,13 +28,13 @@ Menu::Menu() : m_width(D_MENU_WIDTH), m_height(D_MENU_HEIGHT) ,m_container(sf::V
 
 //-------------------------------------------------
 
-Menu::Menu(int width) : m_container(sf::Vector2f(width, D_MENU_HEIGHT)), m_height(D_MENU_HEIGHT) , m_width(width)
+Menu::Menu(int width) : m_container(sf::Vector2f(width, D_MENU_HEIGHT)), m_height(CON_HEIGHT) , m_width(width)
 {
 	for (int i = 0; i < NUM_OF_ICONS; ++i)
 		m_texture[i].loadFromFile(PIC_NAMES[i] + ".png");
 
 	//check width to do responsive
-	setSize(width, D_MENU_HEIGHT);
+	setSize(width, CON_HEIGHT + 20);
 }
 
 //-------------------------------------------------
@@ -59,7 +60,6 @@ void Menu::drawMenu(sf::RenderWindow& window) const
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 	{
 		window.draw(m_characters_btns[i].createBtn(i * D_BTN_WIDTH, 0));
-		//window.draw(m_characters_btns[i]);
 	}
 	for (int i = 0; i < GAME_BTN_NUM; i++)
 	{
@@ -81,17 +81,45 @@ void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 		if (curr_rect.getGlobalBounds().contains(location))
 		{
 
-			if (last_active < NUM_OF_ICONS && last_active >= 0)
+			if (last_active < NUM_OF_ICONS + GAME_BTN_NUM && last_active >= 0)
 			{
-				m_characters_btns[last_active].setIsClicked(false);
+				if (last_active < NUM_OF_ICONS)
+				{
+					m_characters_btns[last_active].setIsClicked(false);
+				}
+				else if (last_active >= NUM_OF_ICONS)
+				{
+					m_game_btns[last_active - NUM_OF_ICONS].setIsClicked(false);
+				}
 			}
 			
 			m_characters_btns[i].setIsClicked(true);
 			last_active = i;
+			return;
 		}
 
 	}
-	 // press on empty space
-	
-	
+
+	for (int i = 0; i < GAME_BTN_NUM; i++)
+	{
+		sf::RectangleShape curr_rect = m_game_btns[i].createBtn(i * D_BTN_WIDTH + i * 20, D_BTN_HEIGHT + 20 + 20);
+		if (curr_rect.getGlobalBounds().contains(location))
+		{
+			if (last_active  < NUM_OF_ICONS + GAME_BTN_NUM && last_active >= 0)
+			{
+				if (last_active < NUM_OF_ICONS)
+				{
+					m_characters_btns[last_active].setIsClicked(false);
+				}
+				else if (last_active >= NUM_OF_ICONS)
+				{
+					m_game_btns[last_active - NUM_OF_ICONS].setIsClicked(false);
+				}
+			}
+
+			m_game_btns[i].setIsClicked(true);
+			last_active = NUM_OF_ICONS + i;
+		}
+
+	}
 }

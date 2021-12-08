@@ -138,11 +138,11 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         std::cout << "press on " << PIC_NAMES[m_curr_char] << std::endl;
 
         //save/clear if()
-        if (m_curr_char == SAVE)
-            m_board.saveBoard();
+       // if (m_curr_char == SAVE)
+         //   m_board.saveBoard();
 
-        else if (m_curr_char == CLEAR)
-            m_board.clearBoard();
+       // else if (m_curr_char == CLEAR)
+        //    m_board.clearBoard();
 
     }
 

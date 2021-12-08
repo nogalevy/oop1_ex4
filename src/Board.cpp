@@ -63,7 +63,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 			{
 				m_mat[row][col].setOutlineThickness(0.5);
 				m_mat[row][col].setOutlineColor(sf::Color::Black);
-				m_mat[row][col].setPosition(col * square_size , row * square_size + 200);
+				m_mat[row][col].setPosition(col * square_size , row * square_size + CON_HEIGHT + 20);
 
 
 				switch (fileBoard[row][col])
