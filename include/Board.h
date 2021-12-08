@@ -22,15 +22,16 @@ public:
 	void saveBoard(); //from save button on menu
 	void clearBoard(); // from clear button on menu
 	void deleteObjectOnBoard(int row, int col); //from delete object on menu
+	void deleteObject(const sf::Vector2f& location);
+	void handleHover(const sf::Vector2f& location);
+	void handleClick(const sf::Vector2f& location, int last_active);
+
 
 	//Access Functions
 	int getSize();
 	
 	//other Functions
-	void drawBoard(sf::RenderWindow &window); //works
-	void handleHover(const sf::Vector2f& location);
-	
-	
+	void drawBoard(sf::RenderWindow &window); 
 
 private:
 	//members
@@ -41,24 +42,4 @@ private:
 	int m_lastRow;
 	int m_lastColumn;
 
-
-
 };
-
-/*
-	functions:
-	
-	constructor: Board(fstream "level.txt", ....)
-
-
-	handle click - get position of mouse and blalbkalbaa
-	set board (from file) - constructor ?
-
-	members:
-	vector of sf::square
-	fstream m_level
-
-
-
-
-*/

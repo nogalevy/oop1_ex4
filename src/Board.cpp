@@ -192,8 +192,8 @@ void Board::saveBoard()
 
 void Board::clearBoard()
 {
-	for (int row = 0; row < this->getSize(); row++)
-		for (int col = 0; col < this->getSize(); col++)
+	for (int row = 0; row < m_size; row++)
+		for (int col = 0; col < m_size; col++)
 			deleteObjectOnBoard(row, col);
 }
 
@@ -203,6 +203,16 @@ void Board::deleteObjectOnBoard(int row, int col)
 {
 	m_mat[row][col].setTexture(NULL);
 	m_mat[row][col].setFillColor(sf::Color::White);
+}
+
+//-------------------------------------------------
+
+void Board::deleteObject(const sf::Vector2f& location)
+{
+	for (int i = 0; i < m_size; i++)
+		for (int j = 0; j < m_size; j++)
+			if (m_mat[i][j].getGlobalBounds().contains(location))
+				deleteObjectOnBoard(i, j);
 }
 
 //-------------------------------------------------
@@ -245,4 +255,66 @@ void Board::handleHover(const sf::Vector2f& location)
 	}
 	m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
 
+}
+//-------------------------------------------------
+
+void Board::handleClick(const sf::Vector2f& location, int last_active)
+{
+	if (last_active == DELETE)
+	{
+		deleteObject(location);
+		return;
+	}
+
+	for (int row = 0; row < m_size; row++)
+	{
+		for (int col = 0; col < m_size; col++)
+		{
+			if (m_mat[row][col].getGlobalBounds().contains(location))
+			{
+				if (m_mat[row][col].getTexture() == nullptr)
+				{
+					switch (last_active)
+					{
+					case KING:
+						m_mat[row][col].setTexture(&m_textures[KING]);
+						break;
+					case WIZARD:
+						m_mat[row][col].setTexture(&m_textures[WIZARD]);
+						break;
+					case WARRIOR:
+						m_mat[row][col].setTexture(&m_textures[WARRIOR]);
+						break;
+					case THIEF:
+						m_mat[row][col].setTexture(&m_textures[THIEF]);
+						break;
+					case WALL:
+						m_mat[row][col].setTexture(&m_textures[WALL]);
+						break;
+					case GATE:
+						m_mat[row][col].setTexture(&m_textures[GATE]);
+						break;
+					case FIRE:
+						m_mat[row][col].setTexture(&m_textures[FIRE]);
+						break;
+					case ORC:
+						m_mat[row][col].setTexture(&m_textures[ORC]);
+						break;
+					case PORTAL:
+						m_mat[row][col].setTexture(&m_textures[PORTAL]);
+						break;
+					case THRONE:
+						m_mat[row][col].setTexture(&m_textures[THRONE]);
+						break;
+					case KEY:
+						m_mat[row][col].setTexture(&m_textures[KEY]);
+						break;
+					default:
+						m_mat[row][col].setTexture(NULL);
+						break;
+					}
+				}
+			}
+		}
+	}
 }

@@ -9,6 +9,8 @@ MyWindow::MyWindow() : m_window(sf::VideoMode(D_MENU_WIDTH, 760), "The Window" ,
     m_window.setSize(sf::Vector2u(D_MENU_WIDTH, windowHeight));
 }
 
+//-------------------------------------------------
+
 void MyWindow::run()
 {
     while (m_window.isOpen())
@@ -16,7 +18,8 @@ void MyWindow::run()
         sf::Event event;
         sf::Vector2f location;
 
-        if(auto event = sf::Event{}; m_window.waitEvent(event))
+        if(event = sf::Event{}; m_window.waitEvent(event))
+        {
             switch (event.type)
             {
             case sf::Event::Closed:
@@ -32,17 +35,18 @@ void MyWindow::run()
                 case sf::Mouse::Button::Left:
                     handleClick(location);
                     break;
-                default:
-                    break;
+                }
+                break;
             }
             case sf::Event::MouseMoved:
             {
                 location = m_window.mapPixelToCoords(
                     { event.mouseMove.x, event.mouseMove.y });
-                
                 handleHover(location);
                 break;
             }
+            default:
+                break;
             }
         }
 
@@ -123,6 +127,8 @@ int MyWindow::checkLocation(const sf::Vector2f& location)
         return BOARD;
 }
 
+//-------------------------------------------------
+
 void MyWindow::handleClick(const sf::Vector2f& location)
 {
     if (checkLocation(location) == MENU)
@@ -130,22 +136,32 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         m_curr_char = m_menu.handleClick(location, m_curr_char);
         std::cout << "press on " << PIC_NAMES[m_curr_char] << std::endl;
 
+        //save/clear if()
+        if (m_curr_char == SAVE)
+            m_board.saveBoard();
+
+        else if (m_curr_char == CLEAR)
+            m_board.clearBoard();
+
     }
 
-    else
+    else if(checkLocation(location) == BOARD)
     {
-
+        
+        // if m_char ==  KING, MAGE, WARRIOR, THIEF, THRONE
+            //if  (can add to board) 
+                //m_board.handleClick(location, m_curr_char)
+        //else
+            //m_board.handleClick(location, m_curr_char) -> takes m_curr_char which is delete button or character that can appear as much as we want
     }
 }
+
+//-------------------------------------------------
 
 void MyWindow::handleHover(const sf::Vector2f& location)
 {
     if (checkLocation(location) == BOARD)
     {
         m_board.handleHover(location);
-    }
-    else
-    {
-        
     }
 }
