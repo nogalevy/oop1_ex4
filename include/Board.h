@@ -4,6 +4,12 @@
 #include <SFML/Graphics.hpp>
 #include "numof.h"
 #include "view_constants.h"
+#include <fstream> //for external files
+#include <stdlib.h> //for exit
+#include <iostream>
+#include <string>
+#include <string.h>
+
 
 class MyWindow;
 

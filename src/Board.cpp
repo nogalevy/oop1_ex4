@@ -1,16 +1,6 @@
 #include "Board.h"
 
-#include <fstream> //for external files
-#include <stdlib.h> //for exit
-#include <iostream>
-#include <string>
-#include <string.h>
-
-//enum Icons { KING, WIZARD, WARRIOR, THIEF, WALL, GATE, FIRE, ORC, PORTAL, THRONE };
-//const std::string fileName = "level.txt";
-const char* fileName = "level.txt";
-//const int NUM_OF_ICONS = 10;
-//const std::string picNames[NUM_OF_ICONS] = {"king", "wizard", "warrior", "thief", "brickwall_2", "gate", "fire", "orc", "portal", "throne"}; //TOOK OUT KEY
+const char* fileName = "level.txt"; //either here OR (in constructor & saveboard)
 
 Board::Board() :m_size(0)
 {
@@ -20,10 +10,6 @@ Board::Board() :m_size(0)
 	m_textures.resize(NUM_OF_ICONS);
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 		m_textures[i].loadFromFile(PIC_NAMES[i] + ".png");
-
-	//checking if file is empty
-	//std::ifstream file;
-	//file.open(fileName);
 
 	FILE* file = fopen(fileName, "r");
 
@@ -43,11 +29,11 @@ Board::Board() :m_size(0)
 		for (int i = 0; i < size; i++)
 			fileBoard[i] = new char[size];
 
-
+		//reading 
 		c = getc(file);
-		std::cout << c;
+		std::cout << c; //null ...why??
 		c = getc(file);
-		std::cout << c;
+		std::cout << c; //newline
 
 
 		for (int row = 0; row < size; row++)
