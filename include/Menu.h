@@ -17,7 +17,7 @@ public:
 	void drawMenu(sf::RenderWindow& window)const;
 
 	bool isContain(const sf::Vector2f& location);
-	int handleClick(const sf::Vector2f& location, int last_active);
+	void handleClick(const sf::Vector2f& location, int &last_active);
 
 private:
 	//Members

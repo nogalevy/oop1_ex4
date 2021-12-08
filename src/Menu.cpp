@@ -62,7 +62,7 @@ bool Menu::isContain(const sf::Vector2f& location)
 	return m_container.getGlobalBounds().contains(location);
 }
 
-int Menu::handleClick(const sf::Vector2f& location, int last_active)
+void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 {
 
 	for (int i = 0; i < NUM_OF_ICONS; i++)
@@ -74,18 +74,17 @@ int Menu::handleClick(const sf::Vector2f& location, int last_active)
 			{
 				m_characters_btns[last_active].setOutlineThickness(0);
 				//m_characters_btns[last_active].setOutlineColor(sf::Color::Transparent);
-
 			}
+
 			m_characters_btns[i].setOutlineThickness(5);
 			m_characters_btns[i].setOutlineColor(sf::Color::Color(12, 123, 70));
+			last_active = i;
 
 				//m_characters_btns[last_active].setFillColor(sf::Color::White);
-
-			return i;
 		}
 
 	}
-	return -1; // press on empty space
+	 // press on empty space
 	
 	
 }
