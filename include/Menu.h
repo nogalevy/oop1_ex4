@@ -5,7 +5,7 @@
 #include "numof.h"
 #include "colors.h"
 
-
+#include <iostream>
 
 class Menu
 {
@@ -16,14 +16,16 @@ public:
 	int getHeight();
 	void drawMenu(sf::RenderWindow& window)const;
 
+	bool isContain(const sf::Vector2f& location);
+	int handleClick(const sf::Vector2f& location, int last_active);
+
 private:
 	//Members
 	sf::Color color = sf::Color::Color(24, 2, 134);
 	int m_height;
 	int m_width;
-	sf::RectangleShape m_container;
+	sf::RectangleShape m_container; //change to NOT rectangle
 
-	std::string m_char_names[NUM_OF_ICONS] = { "king", "wizard",  "thief",  "warrior",  "wall",  "gate",  "orc",  "portal",  "fire",  "throne" };
 	std::vector<sf::RectangleShape> m_characters_btns;
 	
 	std::vector<sf::Texture> m_texture;

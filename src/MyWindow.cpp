@@ -1,11 +1,12 @@
 #include "MyWindow.h"
+#include <iostream>
 
-
-MyWindow::MyWindow() : m_window(sf::VideoMode(760, 760), "The Window" , sf::Style::Close | sf::Style::Titlebar), m_board(), m_menu() //make 200 const
+enum parts {MENU, BOARD, NONE};
+MyWindow::MyWindow() : m_window(sf::VideoMode(D_MENU_WIDTH, 760), "The Window" , sf::Style::Close | sf::Style::Titlebar), m_board(), m_menu() //make 200 const
 {
     //m_board(m_menu.getHeight());
     int windowHeight = m_menu.getHeight() + m_board.getSize();
-    m_window.setSize(sf::Vector2u(760 , windowHeight));
+    m_window.setSize(sf::Vector2u(D_MENU_WIDTH, windowHeight));
 }
 
 void MyWindow::run()
@@ -13,10 +14,25 @@ void MyWindow::run()
     while (m_window.isOpen())
     {
         sf::Event event;
-        while (m_window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
+        if(auto event = sf::Event{}; m_window.waitEvent(event))
+            switch (event.type)
+            {
+            case sf::Event::Closed:
                 m_window.close();
+                break;
+            case sf::Event::MouseButtonReleased:
+            {
+                auto location = m_window.mapPixelToCoords(
+                    { event.mouseButton.x, event.mouseButton.y });
+
+                switch (event.mouseButton.button)
+                {
+                case sf::Mouse::Button::Left:
+                    handleClick(location);
+                    break;
+                break;
+            }
+            }
         }
 
         m_window.clear(sf::Color::White);
@@ -86,6 +102,28 @@ void MyWindow::run()
 //    }
 //}
 
-void MyWindow::handleClick(const sf::Event::MouseButtonEvent& event)
+int MyWindow::checkLocation(const sf::Vector2f& location)
 {
+    if (m_menu.isContain(location))
+    {
+        return MENU;
+    }
+    else
+        return BOARD;
+}
+
+void MyWindow::handleClick(const sf::Vector2f& location)
+{
+    if (checkLocation(location) == MENU)
+    {
+        std::cout << "on menu\n";
+        m_curr_char = m_menu.handleClick(location, m_curr_char);
+        std::cout << "press on " << PIC_NAMES[m_curr_char] << std::endl;
+
+    }
+
+    else
+    {
+
+    }
 }
