@@ -5,24 +5,23 @@
 Menu::Menu() : m_width(D_MENU_WIDTH), m_height(D_MENU_HEIGHT) ,m_container(sf::Vector2f(1280, D_BTN_HEIGHT + 20))//make 200 consts
 {
 	m_container.setFillColor(MENU_COLOR);
-	m_texture.resize(NUM_OF_ICONS);
+	m_texture.resize(NUM_OF_ICONS + GAME_BTN_NUM);
 
-	for (int i = 0; i < NUM_OF_ICONS; ++i)
+	for (int i = 0; i < NUM_OF_ICONS + GAME_BTN_NUM; ++i)
 		m_texture[i].loadFromFile(PIC_NAMES[i] + ".png");
-
 
 	m_characters_btns.resize(NUM_OF_ICONS);
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 	{
 		m_characters_btns[i].setBtnSize(D_BTN_WIDTH, D_BTN_HEIGHT);
 		m_characters_btns[i].setBtnTexture(m_texture[i]);
-		//m_btns_characters[i].setBtnPosition(i * D_BTN_WIDTH, 0); ?
+	}
 
-
-
-		//m_characters_btns[i].setSize(sf::Vector2f(D_BTN_WIDTH, D_BTN_HEIGHT));
-		//m_characters_btns[i].setTexture(&m_texture[i]);
-		//m_characters_btns[i].setPosition(i * D_BTN_WIDTH, 0);
+	m_game_btns.resize(GAME_BTN_NUM);
+	for (int i = 0; i < GAME_BTN_NUM; i++)
+	{
+		m_game_btns[i].setBtnSize(D_BTN_WIDTH *0.75, D_BTN_HEIGHT * 0.75);
+		m_game_btns[i].setBtnTexture(m_texture[(NUM_OF_ICONS + i )]);
 	}
 }
 
@@ -61,6 +60,10 @@ void Menu::drawMenu(sf::RenderWindow& window) const
 	{
 		window.draw(m_characters_btns[i].createBtn(i * D_BTN_WIDTH, 0));
 		//window.draw(m_characters_btns[i]);
+	}
+	for (int i = 0; i < GAME_BTN_NUM; i++)
+	{
+		window.draw(m_game_btns[i].createBtn(i * D_BTN_WIDTH + i * 20, D_BTN_HEIGHT + 20 + 20));
 	}
 }
 

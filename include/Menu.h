@@ -33,6 +33,7 @@ private:
 	std::vector<sf::Texture> m_texture;
 	
 	std::vector<ObjBtn> m_characters_btns;
+	std::vector<Button> m_game_btns;
 	// GameObjects...
 
 };
