@@ -2,6 +2,8 @@
                                              "MyWindow.cpp"
                                              "Board.cpp"
                                              "Menu.cpp"
+                                             "Button.cpp"
+                                             #"Button.cpp"
                                                 )
 
 configure_file("level.txt" ${CMAKE_BINARY_DIR} COPYONLY)

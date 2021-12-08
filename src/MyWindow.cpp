@@ -133,7 +133,7 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 {
     if (checkLocation(location) == MENU)
     {
-        m_curr_char = m_menu.handleClick(location, m_curr_char);
+        m_menu.handleClick(location, m_curr_char);
         std::cout << "press on " << PIC_NAMES[m_curr_char] << std::endl;
 
         //save/clear if()
@@ -147,9 +147,9 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 
     else if(checkLocation(location) == BOARD)
     {
-        
+
         // if m_char ==  KING, MAGE, WARRIOR, THIEF, THRONE
-            //if  (can add to board) 
+            //if  (can add to board)
                 //m_board.handleClick(location, m_curr_char)
         //else
             //m_board.handleClick(location, m_curr_char) -> takes m_curr_char which is delete button or character that can appear as much as we want
