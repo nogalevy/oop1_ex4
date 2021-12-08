@@ -20,11 +20,14 @@ sf::RectangleShape Button::createBtn(int row, int col) const
 
 	if (m_isClicked)
 	{
-		new_btn.setOutlineThickness(5);
-		new_btn.setOutlineColor(sf::Color::Black);
+		new_btn.setFillColor(sf::Color::Color(255, 255, 255, 255));
+
+		new_btn.setOutlineThickness(8);
+		new_btn.setOutlineColor(sf::Color::Color(114, 150, 158));
 	}
 	else
 	{
+		new_btn.setFillColor(sf::Color::Color(219, 249, 255, 215));
 		new_btn.setOutlineThickness(0);
 	}
 	return new_btn;

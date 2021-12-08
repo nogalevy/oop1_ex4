@@ -5,7 +5,7 @@ enum parts {MENU, BOARD, NONE};
 MyWindow::MyWindow() : m_window(sf::VideoMode(D_MENU_WIDTH, 760), "The Window" , sf::Style::Close | sf::Style::Titlebar), m_board(), m_menu() //make 200 const
 {
     //m_board(m_menu.getHeight());
-    int windowHeight = m_menu.getHeight() + m_board.getSize();
+    int windowHeight = m_menu.getHeight() + m_board.getSize() +  100 ;
     m_window.setSize(sf::Vector2u(D_MENU_WIDTH, windowHeight));
     m_curr_char = -1;
 }

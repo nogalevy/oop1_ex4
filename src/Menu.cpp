@@ -21,7 +21,7 @@ Menu::Menu() : m_width(D_MENU_WIDTH), m_height(D_MENU_HEIGHT) ,m_container(sf::V
 	m_game_btns.resize(GAME_BTN_NUM);
 	for (int i = 0; i < GAME_BTN_NUM; i++)
 	{
-		m_game_btns[i].setBtnSize(D_BTN_WIDTH *0.75, D_BTN_HEIGHT * 0.75);
+		m_game_btns[i].setBtnSize(D_BTN_WIDTH *0.7, D_BTN_HEIGHT * 0.7);
 		m_game_btns[i].setBtnTexture(m_texture[(NUM_OF_ICONS + i )]);
 	}
 }

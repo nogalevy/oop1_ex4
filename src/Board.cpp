@@ -226,9 +226,17 @@ int Board::getSize()
 
 void Board::drawBoard(sf::RenderWindow &window)
 {
+	int board_size = 500;
+	int square_size = 500 / m_size;
+	int col_offset = (window.getSize().x - board_size) / 2;
+
 	for (int i = 0; i < m_size ; i++)
 		for (int j = 0; j < m_size; j++)
+		{
+			m_mat[i][j].setPosition(j * square_size + col_offset, i * square_size + CON_HEIGHT + 20);
 			window.draw(m_mat[i][j]);
+
+		}
 }
 
 //-------------------------------------------------
