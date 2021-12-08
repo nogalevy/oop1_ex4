@@ -4,6 +4,7 @@
 #include "view_constants.h"
 #include "numof.h"
 #include "colors.h"
+#include "Button.h"
 
 #include <iostream>
 
@@ -26,10 +27,11 @@ private:
 	int m_width;
 	sf::RectangleShape m_container; //change to NOT rectangle
 
-	std::vector<sf::RectangleShape> m_characters_btns;
+	//std::vector<sf::RectangleShape> m_characters_btns;
 	
 	std::vector<sf::Texture> m_texture;
-
+	
+	std::vector<Button>  m_characters_btns;
 	// GameObjects...
 
 };
