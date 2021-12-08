@@ -5,6 +5,7 @@
 #include "numof.h"
 #include "colors.h"
 #include "Button.h"
+#include "ObjBtn.h"
 
 #include <iostream>
 
@@ -31,7 +32,7 @@ private:
 	
 	std::vector<sf::Texture> m_texture;
 	
-	std::vector<Button>  m_characters_btns;
+	std::vector<ObjBtn> m_characters_btns;
 	// GameObjects...
 
 };

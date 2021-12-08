@@ -7,6 +7,7 @@ MyWindow::MyWindow() : m_window(sf::VideoMode(D_MENU_WIDTH, 760), "The Window" ,
     //m_board(m_menu.getHeight());
     int windowHeight = m_menu.getHeight() + m_board.getSize();
     m_window.setSize(sf::Vector2u(D_MENU_WIDTH, windowHeight));
+    m_curr_char = -1;
 }
 
 //-------------------------------------------------

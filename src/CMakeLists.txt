@@ -3,7 +3,7 @@
                                              "Board.cpp"
                                              "Menu.cpp"
                                              "Button.cpp"
-                                             #"Button.cpp"
+                                             "ObjBtn.cpp"
                                                 )
 
 configure_file("level.txt" ${CMAKE_BINARY_DIR} COPYONLY)

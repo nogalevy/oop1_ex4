@@ -4,12 +4,12 @@
 const int INFINITIE = -1;
 
 Button::Button() 
-	: m_max(INFINITIE), m_btn_width(D_BTN_WIDTH), m_btn_height(D_BTN_HEIGHT), m_exist(0), m_isClicked(false)
+	: m_btn_width(D_BTN_WIDTH), m_btn_height(D_BTN_HEIGHT), m_isClicked(false)
 {}
 
 //TODO: add int exist
-Button::Button(int max, Position position, sf::Texture texture)
-	: m_max(max), m_btn_width(D_BTN_WIDTH), m_btn_height(D_BTN_HEIGHT), m_texture(texture), m_isClicked(false), m_exist(0)
+Button::Button(sf::Texture texture)
+	: m_btn_width(D_BTN_WIDTH), m_btn_height(D_BTN_HEIGHT), m_texture(texture), m_isClicked(false)
 {}
 
 sf::RectangleShape Button::createBtn(int row, int col) const
@@ -45,19 +45,3 @@ void Button::setIsClicked(const bool b)
 {
 	m_isClicked = b;
 }
-
-void Button::setMax(const int max)
-{
-	m_max = max;
-}
-
-void Button::setExist(bool op)
-{
-	op ? m_exist++ : m_exist--;
-}
-
-bool Button::canAddToBoard() const
-{
-	return m_max > m_exist;
-}
-
