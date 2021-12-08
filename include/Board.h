@@ -28,6 +28,7 @@ public:
 	
 	//other Functions
 	void drawBoard(sf::RenderWindow &window); //works
+	void handleHover(const sf::Vector2f& location);
 	
 	
 
@@ -37,6 +38,8 @@ private:
 	std::vector<std::vector<sf::RectangleShape>> m_mat;
 	std::vector<sf::Texture> m_textures;
 	//std::vector<std::vector<int>> m_mm;
+	int m_lastRow;
+	int m_lastColumn;
 
 
 

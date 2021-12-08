@@ -15,6 +15,7 @@ public:
 
 private:
     void handleClick(const sf::Vector2f& location);
+    void handleHover(const sf::Vector2f& location);
     int checkLocation(const sf::Vector2f& location);
 
     //sf::CircleShape m_shape;

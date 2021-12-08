@@ -2,7 +2,7 @@
 
 const char* fileName = "level.txt"; //either here OR (in constructor & saveboard)
 
-Board::Board() :m_size(0)
+Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 {
 	int size;
 
@@ -99,6 +99,9 @@ Board::Board() :m_size(0)
 				case '@':
 					m_mat[row][col].setTexture(&m_textures[THRONE]);
 					break;
+				case 'F':
+					m_mat[row][col].setTexture(&m_textures[KEY]);
+					break;
 				default:
 					m_mat[row][col].setTexture(NULL);
 
@@ -125,14 +128,16 @@ Board::Board() :m_size(0)
 			for (int j = 0; j < size; j++)
 			{
 				m_mat[i][j].setPosition(i * square_size + 500, j * square_size);
-				//m_mat[i][j].setOutlineThickness(2);
-				//m_mat[i][j].setOutlineColor(sf::Color::Black);
-				m_mat[i][j].setTexture(&m_textures[2]); //take out
+				m_mat[i][j].setOutlineThickness(0.5);
+				m_mat[i][j].setOutlineColor(sf::Color::Black);
+				m_mat[i][j].setTexture(NULL);
 			}
 		}
 	}
 	m_size = size;
 }
+
+//-------------------------------------------------
 
 void Board::saveBoard()
 {
@@ -176,10 +181,14 @@ void Board::saveBoard()
 				fprintf(file, "X");
 			else if (m_mat[i][j].getTexture() == &m_textures[THRONE])
 				fprintf(file, "@");
+			else if (m_mat[i][j].getTexture() == &m_textures[KEY])
+				fprintf(file, "F");
 		}
 		fprintf(file, "\n");
 	}
 }
+
+//-------------------------------------------------
 
 void Board::clearBoard()
 {
@@ -188,6 +197,7 @@ void Board::clearBoard()
 			deleteObjectOnBoard(row, col);
 }
 
+//-------------------------------------------------
 
 void Board::deleteObjectOnBoard(int row, int col)
 {
@@ -195,14 +205,44 @@ void Board::deleteObjectOnBoard(int row, int col)
 	m_mat[row][col].setFillColor(sf::Color::White);
 }
 
+//-------------------------------------------------
+
 int Board::getSize()
 {
 	return m_size;
 }
+
+//-------------------------------------------------
 
 void Board::drawBoard(sf::RenderWindow &window)
 {
 	for (int i = 0; i < m_size ; i++)
 		for (int j = 0; j < m_size; j++)
 			window.draw(m_mat[i][j]);
+}
+
+//-------------------------------------------------
+
+void Board::handleHover(const sf::Vector2f& location)
+{
+	for (int i = 0; i < m_size; i++)
+	{
+		for (int j = 0; j < m_size; j++)
+		{
+			if (m_mat[i][j].getGlobalBounds().contains(location))
+			{
+				//check if empty
+				if (m_mat[i][j].getTexture() == nullptr)
+				{
+					m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
+					m_mat[i][j].setFillColor(sf::Color::Cyan);
+					m_lastRow = i;
+					m_lastColumn = j;
+					return;
+				}
+			}
+		}
+	}
+	m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
+
 }

@@ -14,6 +14,8 @@ void MyWindow::run()
     while (m_window.isOpen())
     {
         sf::Event event;
+        sf::Vector2f location;
+
         if(auto event = sf::Event{}; m_window.waitEvent(event))
             switch (event.type)
             {
@@ -22,7 +24,7 @@ void MyWindow::run()
                 break;
             case sf::Event::MouseButtonReleased:
             {
-                auto location = m_window.mapPixelToCoords(
+                location = m_window.mapPixelToCoords(
                     { event.mouseButton.x, event.mouseButton.y });
 
                 switch (event.mouseButton.button)
@@ -30,6 +32,15 @@ void MyWindow::run()
                 case sf::Mouse::Button::Left:
                     handleClick(location);
                     break;
+                default:
+                    break;
+            }
+            case sf::Event::MouseMoved:
+            {
+                location = m_window.mapPixelToCoords(
+                    { event.mouseMove.x, event.mouseMove.y });
+                
+                handleHover(location);
                 break;
             }
             }
@@ -124,5 +135,17 @@ void MyWindow::handleClick(const sf::Vector2f& location)
     else
     {
 
+    }
+}
+
+void MyWindow::handleHover(const sf::Vector2f& location)
+{
+    if (checkLocation(location) == BOARD)
+    {
+        m_board.handleHover(location);
+    }
+    else
+    {
+        
     }
 }
