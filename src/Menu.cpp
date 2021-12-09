@@ -83,6 +83,7 @@ void Menu::setButtonData(std::vector<int> objExists)
 		case THIEF:
 		case WARRIOR:
 		case THRONE:
+		case WIZARD:
 			m_characters_btns[i].initMax(1);
 			break;
 
