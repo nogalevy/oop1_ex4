@@ -143,7 +143,7 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         if (m_curr_char == SAVE)
            m_board.saveBoard();
 
-         if (m_curr_char == CLEAR)
+        else if (m_curr_char == CLEAR)
            m_board.clearBoard();
 
     }
