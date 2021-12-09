@@ -2,25 +2,42 @@
 
 Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 {
-	int size;
+	std::cout << "here\n";
+
+	int size = 0;
 
 	// filling texture vector
 	m_textures.resize(NUM_OF_ICONS);
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 		m_textures[i].loadFromFile(PIC_NAMES[i] + ".png");
+	std::cout << "here\n";
 
 	const char* fileName = "level.txt";
+	std::cout << "here\n";
 
 	FILE* file = fopen(fileName, "r");
 
 	if (file != NULL) //if file is not empty
 	{
-		char c;
 		std::cout << "here\n";
+		char c;
+		int digit = 10;
 		c = getc(file);
-		size = ((int)c) - 39;
+		std::cout<< "Char read: " << int(c) - 48 << "\n";
+		size += (int)c - 48;
+		c = getc(file);
+		std::cout << "Char read: " << (int)c - 48 << "\n";
+
+		while(c != '\n')
+		{
+			size *= digit;
+			size += (int)c - 48;
+			c = getc(file);
+			std::cout << "Char read: " << (int)c - 48 << "\n";
+
+		}
 		//read from file into matrix
-		std::cout << size << "\n";
+		std::cout <<"Size is:" << size << "\n";
 
 		const int newsize = size;
 		char** fileBoard;
@@ -32,10 +49,10 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 		//reading 
 		c = getc(file);
 		std::cout << c; //null ...why??
-		c = getc(file);
-		std::cout << c; //newline
+		//c = getc(file);
+		//std::cout << c; //newline
 
-
+		
 		for (int row = 0; row < size; row++)
 		{
 
