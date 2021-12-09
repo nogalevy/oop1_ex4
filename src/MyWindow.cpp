@@ -2,10 +2,12 @@
 #include <iostream>
 
 enum parts {MENU, BOARD, NONE};
-MyWindow::MyWindow() : m_window(sf::VideoMode(D_MENU_WIDTH, 760), "The Window" , sf::Style::Close | sf::Style::Titlebar), m_board(), m_menu() //make 200 const
+MyWindow::MyWindow() : m_window(sf::VideoMode(D_MENU_WIDTH, 760), "The Window" ), m_board(), m_menu() //make 200 const
 {
+    //int square_size = (D_MENU_WIDTH - 500) / m_size;
+
     //m_board(m_menu.getHeight());
-    int windowHeight = m_menu.getHeight() + m_board.getSize() +  100 ;
+    int windowHeight = m_menu.getHeight() + (m_board.getSize()) +  100 ;
     m_window.setSize(sf::Vector2u(D_MENU_WIDTH, windowHeight));
     m_curr_char = -1;
 }
@@ -138,11 +140,11 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         std::cout << "press on " << PIC_NAMES[m_curr_char] << std::endl;
 
         //save/clear if()
-       // if (m_curr_char == SAVE)
-         //   m_board.saveBoard();
+        if (m_curr_char == SAVE)
+           m_board.saveBoard();
 
-       // else if (m_curr_char == CLEAR)
-        //    m_board.clearBoard();
+         if (m_curr_char == CLEAR)
+           m_board.clearBoard();
 
     }
 

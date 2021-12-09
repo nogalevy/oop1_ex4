@@ -61,7 +61,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 		{
 			for (int col = 0; col < size; col++)
 			{
-				m_mat[row][col].setOutlineThickness(0.5);
+				m_mat[row][col].setOutlineThickness(1);
 				m_mat[row][col].setOutlineColor(sf::Color::Black);
 				m_mat[row][col].setPosition(col * square_size , row * square_size + CON_HEIGHT + 20);
 
@@ -110,7 +110,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 			}
 		}
 		std::cout << "here1\n";
-
+		fclose(file);
 	}
 	else //if file is empty
 	{
@@ -128,7 +128,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 			for (int j = 0; j < size; j++)
 			{
 				m_mat[i][j].setPosition(i * square_size + 500, j * square_size);
-				m_mat[i][j].setOutlineThickness(0.5);
+				m_mat[i][j].setOutlineThickness(1);
 				m_mat[i][j].setOutlineColor(sf::Color::Black);
 				m_mat[i][j].setTexture(NULL);
 			}
@@ -143,7 +143,7 @@ void Board::saveBoard()
 {
 
 	//opening file or creating file (overwrites if exists)
-	FILE* file = fopen(fileName, "w+"); //T: Q: where does it open if it doesnt exist? can we choose?
+	FILE* file = fopen("newout", "w+"); //T: Q: where does it open if it doesnt exist? can we choose?
 
 	//creating array to print into file
 	const int newsize = m_size;
@@ -186,6 +186,7 @@ void Board::saveBoard()
 		}
 		fprintf(file, "\n");
 	}
+	fclose(file);
 }
 
 //-------------------------------------------------
@@ -228,6 +229,7 @@ void Board::drawBoard(sf::RenderWindow &window)
 {
 	int board_size = 500;
 	int square_size = 500 / m_size;
+	//int square_size = (D_MENU_WIDTH - 500) / m_size;
 	int col_offset = (window.getSize().x - board_size) / 2;
 
 	for (int i = 0; i < m_size ; i++)

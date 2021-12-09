@@ -2,7 +2,7 @@
 
 #include "numof.h"
 
-const int D_MENU_WIDTH = 1200;
+const int D_MENU_WIDTH = 1270;
 const int D_MENU_HEIGHT = 500;
 
 const int D_BTN_WIDTH = D_MENU_WIDTH / NUM_OF_ICONS * 0.75;
