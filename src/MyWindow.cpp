@@ -152,10 +152,10 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 
     else if(checkLocation(location) == BOARD)
     {
+        int deleted_obj;
         if (m_curr_char == DELETE)
         {
-            int deleted_obj = m_board.handleClick(location, m_curr_char);//takes m_curr_char which is delete button or character that can appear as much as we want
-            std::cout << deleted_obj << std::endl;
+            deleted_obj = m_board.handleClick(location, m_curr_char);//takes m_curr_char which is delete button or character that can appear as much as we want
             if (deleted_obj >= 0)
             {
                 m_menu.setObjExist(false, deleted_obj);     
@@ -164,8 +164,11 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         }
         else
         {
-            if (m_menu.canAddObj(m_curr_char));
-            m_board.handleClick(location, m_curr_char);
+            if (m_menu.canAddObj(m_curr_char))
+            {
+                m_board.handleClick(location, m_curr_char);
+                m_menu.setObjExist(true, m_curr_char);
+            }
         }
         
             //if  (can add to board)
