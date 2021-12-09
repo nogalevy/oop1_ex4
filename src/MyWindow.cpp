@@ -156,7 +156,10 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         {
             int deleted_obj = m_board.handleClick(location, m_curr_char);//takes m_curr_char which is delete button or character that can appear as much as we want
             std::cout << deleted_obj << std::endl;
-            m_menu.setObjExist(false, deleted_obj);
+            if (deleted_obj >= 0)
+            {
+                m_menu.setObjExist(false, deleted_obj);     
+            }
             return;
         }
         else
