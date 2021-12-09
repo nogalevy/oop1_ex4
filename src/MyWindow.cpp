@@ -138,15 +138,16 @@ void MyWindow::handleClick(const sf::Vector2f& location)
     if (checkLocation(location) == MENU)
     {
         m_menu.handleClick(location, m_curr_char);
-        std::cout << "press on " << PIC_NAMES[m_curr_char] << std::endl;
 
         //save/clear if()
         if (m_curr_char == SAVE)
            m_board.saveBoard();
 
         else if (m_curr_char == CLEAR)
+        {
            m_board.clearBoard();
-        // m_menu.resetbtns() // 
+           m_menu.resetBtnsExist(); // 
+        }
 
     }
 

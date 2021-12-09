@@ -23,6 +23,7 @@ public:
 	void handleClick(const sf::Vector2f& location, int &last_active);
 	bool canAddObj(int character);
 	void setObjExist(bool b, int character);
+	void resetBtnsExist();
 
 private:
 	//Members
