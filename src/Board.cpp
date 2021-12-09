@@ -1,7 +1,5 @@
 #include "Board.h"
 
-const char* fileName = "level.txt"; //either here OR (in constructor & saveboard)
-
 Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 {
 	int size;
@@ -10,6 +8,8 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 	m_textures.resize(NUM_OF_ICONS);
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 		m_textures[i].loadFromFile(PIC_NAMES[i] + ".png");
+
+	const char* fileName = "level.txt";
 
 	FILE* file = fopen(fileName, "r");
 
@@ -63,7 +63,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 			{
 				m_mat[row][col].setOutlineThickness(1);
 				m_mat[row][col].setOutlineColor(sf::Color::Black);
-				m_mat[row][col].setPosition(col * square_size , row * square_size + CON_HEIGHT + 20);
+				m_mat[row][col].setPosition(col * square_size, row * square_size + CON_HEIGHT + 20);
 
 
 				switch (fileBoard[row][col])
@@ -111,6 +111,9 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 		}
 		std::cout << "here1\n";
 		fclose(file);
+		for (int i = 0; i < size; i++)
+			delete [] fileBoard[i];
+		delete [] fileBoard;
 	}
 	else //if file is empty
 	{
@@ -141,9 +144,10 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 
 void Board::saveBoard()
 {
+	const char* fileName = "level";
 
 	//opening file or creating file (overwrites if exists)
-	FILE* file = fopen("newout", "w+"); //T: Q: where does it open if it doesnt exist? can we choose?
+	FILE* file = fopen(fileName, "w+"); 
 
 	//creating array to print into file
 	const int newsize = m_size;
@@ -187,6 +191,9 @@ void Board::saveBoard()
 		fprintf(file, "\n");
 	}
 	fclose(file);
+	for (int i = 0; i < m_size; i++)
+		delete[] fileBoard[i];
+	delete[] fileBoard;
 }
 
 //-------------------------------------------------
@@ -218,9 +225,39 @@ void Board::deleteObject(const sf::Vector2f& location)
 
 //-------------------------------------------------
 
-int Board::getSize()
+int Board::getSize()const
 {
 	return m_size;
+}
+
+//-------------------------------------------------
+
+std::vector<int> Board::getObjExists()const
+{
+	std::vector<int> objExists(NUM_OF_ICONS);
+
+	for (int i = 0; i < NUM_OF_ICONS; i++)
+		objExists[i] = 0;
+
+	for (int i = 0; i < m_size; i++)
+	{
+		for (int j = 0; j < m_size; j++)
+		{
+
+			if (m_mat[i][j].getTexture() == &m_textures[KING])
+				objExists[KING]++;
+			else if (m_mat[i][j].getTexture() == &m_textures[WIZARD])
+				objExists[WIZARD]++;
+			else if (m_mat[i][j].getTexture() == &m_textures[WARRIOR])
+				objExists[WARRIOR]++;
+			else if (m_mat[i][j].getTexture() == &m_textures[THIEF])
+				objExists[THIEF]++;
+			else if (m_mat[i][j].getTexture() == &m_textures[THRONE])
+				objExists[KING]++;
+		}
+	}
+
+	return objExists;
 }
 
 //-------------------------------------------------

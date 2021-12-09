@@ -21,16 +21,16 @@ public:
 	//Menu Buttons
 	void saveBoard(); //from save button on menu
 	void clearBoard(); // from clear button on menu
-	void deleteObjectOnBoard(int row, int col); //from delete object on menu
-	void deleteObject(const sf::Vector2f& location);
+	void deleteObjectOnBoard(int row, int col); 
+	void deleteObject(const sf::Vector2f& location); //from delete object on menu
 	void handleHover(const sf::Vector2f& location);
 	void handleClick(const sf::Vector2f& location, int last_active);
 
-
 	//Access Functions
-	int getSize();
+	int getSize()const;
+	std::vector<int> getObjExists()const;
 	
-	//other Functions
+	//Window Functions
 	void drawBoard(sf::RenderWindow &window); 
 
 private:
@@ -38,7 +38,6 @@ private:
 	int m_size;
 	std::vector<std::vector<sf::RectangleShape>> m_mat;
 	std::vector<sf::Texture> m_textures;
-	//std::vector<std::vector<int>> m_mm;
 	int m_lastRow;
 	int m_lastColumn;
 

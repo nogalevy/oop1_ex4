@@ -67,10 +67,23 @@ void Menu::drawMenu(sf::RenderWindow& window) const
 	}
 }
 
+//-------------------------------------------------
+
+void Menu::setButtonData(std::vector<int> objExists)
+{
+	for (int i = 0; i < NUM_OF_ICONS; i++)
+		if (objExists[i] != 0)
+			m_characters_btns[i].initExists(objExists[i]);
+}
+
+//-------------------------------------------------
+
 bool Menu::isContain(const sf::Vector2f& location)
 {
 	return m_container.getGlobalBounds().contains(location);
 }
+
+//-------------------------------------------------
 
 void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 {

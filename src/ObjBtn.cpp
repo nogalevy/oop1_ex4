@@ -1,3 +1,4 @@
+#include "..\include\ObjBtn.h"
 #include "ObjBtn.h"
 
 ObjBtn::ObjBtn() : Button()
@@ -25,6 +26,11 @@ void ObjBtn::setExist(bool op)
 bool ObjBtn::canAddToBoard() const
 {
 	return m_max > m_exist;
+}
+
+void ObjBtn::initExists(int num)
+{
+	m_exist = num;
 }
 
 

@@ -22,6 +22,7 @@ public:
 	void setMax(const int max);
 	void setExist(bool op); // - false     + true
 	bool canAddToBoard()const;
+	void initExists(int num);
 
 
 private:

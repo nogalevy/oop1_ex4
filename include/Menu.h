@@ -17,7 +17,8 @@ public:
 	void setSize(int height, int width);
 	int getHeight();
 	void drawMenu(sf::RenderWindow& window)const;
-
+	
+	void setButtonData(std::vector<int> objExists);
 	bool isContain(const sf::Vector2f& location);
 	void handleClick(const sf::Vector2f& location, int &last_active);
 
