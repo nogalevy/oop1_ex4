@@ -86,7 +86,6 @@ void Menu::setButtonData(std::vector<int> objExists)
 		case WIZARD:
 			m_characters_btns[i].initMax(1);
 			break;
-
 		default:
 			break;
 		}
@@ -125,7 +124,6 @@ void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 			}
 			
 			m_characters_btns[i].setIsClicked(true);
-			std::cout << "exist : " << m_characters_btns[i].getExist() << std::endl;
 			last_active = i;
 			return;
 		}
@@ -156,10 +154,22 @@ void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 	}
 }
 
+//--------------------------------------------
+
 bool Menu::canAddObj(int character)
 {
 	return m_characters_btns[character].canAddToBoard();
 }
+
+void Menu::resetBtnsExist() 
+{
+	for (int i = 0; i < NUM_OF_ICONS; i++)
+	{
+		m_characters_btns[i].initExists(0);
+	}
+}
+
+//--------------------------------------------
 
 void Menu::setObjExist(bool b, int character)
 {
