@@ -136,3 +136,13 @@ void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 
 	}
 }
+
+bool Menu::canAddObj(int character)
+{
+	return m_characters_btns[character].canAddToBoard();
+}
+
+void Menu::setObjExist(bool b, int character)
+{
+	m_characters_btns[character].setExist(b);
+}

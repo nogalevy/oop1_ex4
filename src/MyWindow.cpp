@@ -29,7 +29,7 @@ void MyWindow::run()
             case sf::Event::Closed:
                 m_window.close();
                 break;
-            case sf::Event::MouseButtonReleased:
+            case sf::Event::MouseButtonPressed:
             {
                 location = m_window.mapPixelToCoords(
                     { event.mouseButton.x, event.mouseButton.y });
@@ -146,13 +146,25 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 
         else if (m_curr_char == CLEAR)
            m_board.clearBoard();
+        // m_menu.resetbtns() // 
 
     }
 
     else if(checkLocation(location) == BOARD)
     {
-
-        // if m_char ==  KING, MAGE, WARRIOR, THIEF, THRONE
+        if (m_curr_char == DELETE)
+        {
+            int deleted_obj = m_board.handleClick(location, m_curr_char);//takes m_curr_char which is delete button or character that can appear as much as we want
+            std::cout << deleted_obj << std::endl;
+            m_menu.setObjExist(false, deleted_obj);
+            return;
+        }
+        else
+        {
+            if (m_menu.canAddObj(m_curr_char));
+            m_board.handleClick(location, m_curr_char);
+        }
+        
             //if  (can add to board)
                 //m_board.handleClick(location, m_curr_char)
         //else
