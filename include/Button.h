@@ -17,6 +17,7 @@ class Button
 public:
 	Button();
 	Button(sf::Texture texture);
+
 	sf::RectangleShape createBtn(int row, int col) const;
 	void setBtnSize(int width, int height);
 	void setBtnTexture(sf::Texture texture);

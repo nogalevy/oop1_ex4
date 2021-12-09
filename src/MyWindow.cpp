@@ -150,7 +150,9 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 
     else if(checkLocation(location) == BOARD)
     {
-
+        std::cout << "in board\n";
+        m_board.handleClick(location, m_curr_char);
+        std::cout << "press on " << PIC_NAMES[m_curr_char] << std::endl;
         // if m_char ==  KING, MAGE, WARRIOR, THIEF, THRONE
             //if  (can add to board)
                 //m_board.handleClick(location, m_curr_char)

@@ -16,7 +16,7 @@ class ObjBtn : public Button
 {
 public:
 	ObjBtn();
-	ObjBtn(int max, sf::Texture texture);
+	ObjBtn(int max, sf::Texture texture); //add exist
 
 	//char btn
 	void setMax(const int max);
