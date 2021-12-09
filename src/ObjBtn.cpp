@@ -3,7 +3,7 @@
 
 ObjBtn::ObjBtn() : Button()
 {
-	m_max = 1;
+	m_max = -1;
 	m_exist = 0;
 }
 
@@ -25,7 +25,8 @@ void ObjBtn::setExist(bool op)
 
 bool ObjBtn::canAddToBoard() const
 {
-	return m_max == -1 ? true : m_max> m_exist;
+	std::cout << "in btn: max: " << m_max << "exist: " << m_exist <<std::endl;
+	return m_max == -1 ? true : m_max > m_exist;
 }
 
 void ObjBtn::initExists(int num)
@@ -33,4 +34,12 @@ void ObjBtn::initExists(int num)
 	m_exist = num;
 }
 
+void ObjBtn::initMax(int num)
+{
+	m_max = num;
+}
 
+int ObjBtn::getExist()const
+{
+	return m_exist;
+}

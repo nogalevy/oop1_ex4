@@ -23,6 +23,9 @@ public:
 	void setExist(bool op); // - false     + true
 	bool canAddToBoard()const;
 	void initExists(int num);
+	void initMax(int num);
+
+	int getExist()const;
 
 
 private:

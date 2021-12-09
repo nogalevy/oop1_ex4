@@ -72,8 +72,26 @@ void Menu::drawMenu(sf::RenderWindow& window) const
 void Menu::setButtonData(std::vector<int> objExists)
 {
 	for (int i = 0; i < NUM_OF_ICONS; i++)
+	{
 		if (objExists[i] != 0)
+			std::cout << "setexist to " << i << " to exist =" << objExists[i] << std::endl;
 			m_characters_btns[i].initExists(objExists[i]);
+
+		switch (i)
+		{
+		case KING:
+		case THIEF:
+		case WARRIOR:
+		case THRONE:
+		case WIZARD:
+			m_characters_btns[i].initMax(1);
+			break;
+
+		default:
+			break;
+		}
+	}
+
 }
 
 //-------------------------------------------------
@@ -107,6 +125,7 @@ void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 			}
 			
 			m_characters_btns[i].setIsClicked(true);
+			std::cout << "exist : " << m_characters_btns[i].getExist() << std::endl;
 			last_active = i;
 			return;
 		}
