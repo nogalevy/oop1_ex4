@@ -47,8 +47,8 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 			fileBoard[i] = new char[size];
 
 		//reading 
-		c = getc(file);
-		std::cout << c; //null ...why??
+		//c = getc(file);
+		//std::cout << c; //null ...why??
 		//c = getc(file);
 		//std::cout << c; //newline
 
