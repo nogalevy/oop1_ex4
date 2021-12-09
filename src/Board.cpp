@@ -208,12 +208,51 @@ void Board::deleteObjectOnBoard(int row, int col)
 
 //-------------------------------------------------
 
-void Board::deleteObject(const sf::Vector2f& location)
+int Board::deleteObject(const sf::Vector2f& location)
 {
+	int deletedObj;
 	for (int i = 0; i < m_size; i++)
+	{
 		for (int j = 0; j < m_size; j++)
+		{
+
 			if (m_mat[i][j].getGlobalBounds().contains(location))
+			{
+				deletedObj = getObj(i, j);
+				std::cout << "get obj " << deletedObj << "\n";
 				deleteObjectOnBoard(i, j);
+				return deletedObj;
+			}
+		}
+	}
+	return -1;
+}
+
+int Board::getObj(int i, int j)
+{
+	if (m_mat[i][j].getTexture() == &m_textures[KING])
+		return KING;
+	else if (m_mat[i][j].getTexture() == &m_textures[WIZARD])
+		return WIZARD;
+	else if (m_mat[i][j].getTexture() == &m_textures[WARRIOR])
+		return WARRIOR;
+	else if (m_mat[i][j].getTexture() == &m_textures[THIEF])
+		return THIEF;
+	else if (m_mat[i][j].getTexture() == &m_textures[WALL])
+		return WALL;
+	else if (m_mat[i][j].getTexture() == &m_textures[GATE])
+		return GATE;
+	else if (m_mat[i][j].getTexture() == &m_textures[FIRE])
+		return FIRE;
+	else if (m_mat[i][j].getTexture() == &m_textures[ORC])
+		return ORC;
+	else if (m_mat[i][j].getTexture() == &m_textures[PORTAL])
+		return PORTAL;
+	else if (m_mat[i][j].getTexture() == &m_textures[THRONE])
+		return THRONE;
+	else if (m_mat[i][j].getTexture() == &m_textures[KEY])
+		return KEY;
+	else return - 1;
 }
 
 //-------------------------------------------------
@@ -264,16 +303,15 @@ void Board::handleHover(const sf::Vector2f& location)
 		}
 	}
 	m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
-
 }
 //-------------------------------------------------
 
-void Board::handleClick(const sf::Vector2f& location, int last_active)
+int Board::handleClick(const sf::Vector2f& location, int last_active)
 {
 	if (last_active == DELETE)
 	{
-		deleteObject(location);
-		return;
+		return deleteObject(location);
+		
 	}
 
 	for (int row = 0; row < m_size; row++)
@@ -327,4 +365,5 @@ void Board::handleClick(const sf::Vector2f& location, int last_active)
 			}
 		}
 	}
+	return -1;
 }

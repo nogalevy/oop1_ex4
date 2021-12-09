@@ -24,7 +24,7 @@ void ObjBtn::setExist(bool op)
 
 bool ObjBtn::canAddToBoard() const
 {
-	return m_max > m_exist;
+	return m_max == -1 ? true : m_max> m_exist;
 }
 
 

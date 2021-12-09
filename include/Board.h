@@ -22,9 +22,10 @@ public:
 	void saveBoard(); //from save button on menu
 	void clearBoard(); // from clear button on menu
 	void deleteObjectOnBoard(int row, int col); //from delete object on menu
-	void deleteObject(const sf::Vector2f& location);
+	int deleteObject(const sf::Vector2f& location);
 	void handleHover(const sf::Vector2f& location);
-	void handleClick(const sf::Vector2f& location, int last_active);
+	int handleClick(const sf::Vector2f& location, int last_active);
+	int getObj(int i, int j);
 
 
 	//Access Functions
