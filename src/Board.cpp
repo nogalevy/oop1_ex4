@@ -181,7 +181,6 @@ void Board::saveBoard()
 	{
 		for (int j = 0; j < m_size; j++)
 		{
-
 			if (m_mat[i][j].getTexture() == &m_textures[KING])
 				fprintf(file, "K");
 			else if (m_mat[i][j].getTexture() == &m_textures[WIZARD])
@@ -291,9 +290,6 @@ std::vector<int> Board::getObjExists()const
 {
 	std::vector<int> objExists(NUM_OF_ICONS, 0);
 
-	/*for (int i = 0; i < NUM_OF_ICONS; i++)
-		objExists[i] = 0;*/
-
 	for (int i = 0; i < m_size; i++)
 	{
 		for (int j = 0; j < m_size; j++)
@@ -310,7 +306,6 @@ std::vector<int> Board::getObjExists()const
 				objExists[THRONE]++;
 		}
 	}
-
 	return objExists;
 }
 

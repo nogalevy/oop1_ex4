@@ -3,14 +3,19 @@
 
 const int INFINITIE = -1;
 
+//-------------------------------------------------
+
 Button::Button() 
 	: m_btn_width(D_BTN_WIDTH), m_btn_height(D_BTN_HEIGHT), m_isClicked(false)
 {}
 
-//TODO: add int exist
+//-------------------------------------------------
+
 Button::Button(sf::Texture texture)
 	: m_btn_width(D_BTN_WIDTH), m_btn_height(D_BTN_HEIGHT), m_texture(texture), m_isClicked(false)
 {}
+
+//-------------------------------------------------
 
 sf::RectangleShape Button::createBtn(int row, int col) const
 {
@@ -33,16 +38,22 @@ sf::RectangleShape Button::createBtn(int row, int col) const
 	return new_btn;
 }
 
+//-------------------------------------------------
+
 void Button::setBtnSize(int width, int height)
 {
 	m_btn_width = width;
 	m_btn_height = height;
 }
 
+//-------------------------------------------------
+
 void Button::setBtnTexture(sf::Texture texture)
 {
 	m_texture = texture;
 }
+
+//-------------------------------------------------
 
 void Button::setIsClicked(const bool b)
 {
