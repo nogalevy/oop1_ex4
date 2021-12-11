@@ -1,17 +1,11 @@
 #pragma once
 
 #include "numof.h"
-
-const int D_MENU_HEIGHT = 500;
-
-//const int D_BTN_HEIGHT = D_BTN_WIDTH;
 #include <iostream>
 #include <string>
 
-//const int CON_HEIGHT = D_BTN_HEIGHT + D_BTN_HEIGHT * 0.75 + 20 + 40;
 
 
-//-------------- new ---------------------------
 const std::string TITLE = "Save The King - Level Generator";
 const int WINDOW_W = 1270;
 const int WINDOW_H = 800;
