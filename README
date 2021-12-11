@@ -53,7 +53,6 @@ Notable Algorithms:
 
 Known Bugs:
 	- if no object is clicked from menu upon starting, and you click on board, leads to error
-    - if save or clear button is clicked and then the board, leads to error
 
 Other General Notes:
 	- none

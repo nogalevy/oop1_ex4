@@ -97,10 +97,13 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         }
         else
         {
-            if ((m_menu.canAddObj(m_curr_char)) && (m_curr_char != CLEAR) && (m_curr_char != SAVE)) //Tali: Q: doesnt fix problem
+            if ((m_curr_char != CLEAR) && (m_curr_char != SAVE))
             {
-                m_board.handleClick(location, m_curr_char);
-                m_menu.setObjExist(true, m_curr_char); //Tali : Q: what happens when save is clicked and then board?
+                if (m_menu.canAddObj(m_curr_char)) //Tali: Q: doesnt fix problem
+                {
+                    m_board.handleClick(location, m_curr_char);
+                    m_menu.setObjExist(true, m_curr_char); //Tali : Q: what happens when save is clicked and then board?
+                }
             }
         }
     }
