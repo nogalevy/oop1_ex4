@@ -53,7 +53,7 @@ void MyWindow::run()
             }
         }
  
-        m_window.clear(sf::Color::Color(231, 214, 162));
+        m_window.clear(WINDOW_COLOR);
         
         m_menu.drawMenu(m_window);
         m_board.drawBoard(m_window);

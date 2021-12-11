@@ -3,6 +3,8 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "numof.h"
+#include "colors.h"
+
 #include "view_constants.h"
 #include <stdlib.h> //for exit
 #include <iostream>

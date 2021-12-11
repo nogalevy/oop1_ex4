@@ -58,7 +58,10 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 				if(charObj != -1)
 					m_mat[row][col].setTexture(&m_textures[charObj]);
 				else
+				{
 					m_mat[row][col].setTexture(nullptr);
+					m_mat[row][col].setFillColor(BOARD_COLOR);
+				}
 			}
 		}
 		fclose(file);
@@ -83,6 +86,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 			{
 				initSquare(i, j, square_size);
 				m_mat[i][j].setTexture(NULL);
+				m_mat[i][j].setFillColor(BOARD_COLOR);
 			}
 		}
 	}
@@ -165,7 +169,8 @@ void Board::clearBoard()
 void Board::deleteObjectOnBoard(int row, int col)
 {
 	m_mat[row][col].setTexture(NULL);
-	m_mat[row][col].setFillColor(sf::Color::White);
+	//m_mat[row][col].setFillColor(sf::Color::White);
+	m_mat[row][col].setFillColor(BOARD_COLOR);
 }
 
 //-------------------------------------------------
@@ -355,7 +360,11 @@ void Board::handleHover(const sf::Vector2f& location)
 			if (m_mat[i][j].getGlobalBounds().contains(location) &&
 				m_mat[i][j].getTexture() == nullptr)
 			{
-				m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
+				if (m_mat[m_lastRow][m_lastColumn].getTexture())
+					m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
+				else
+					m_mat[m_lastRow][m_lastColumn].setFillColor(BOARD_COLOR);
+
 				m_mat[i][j].setFillColor(sf::Color::Cyan);
 				m_lastRow = i;
 				m_lastColumn = j;
@@ -363,7 +372,12 @@ void Board::handleHover(const sf::Vector2f& location)
 			}
 		}
 	}
-	m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
+	if(m_mat[m_lastRow][m_lastColumn].getTexture())
+		m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
+	else
+		m_mat[m_lastRow][m_lastColumn].setFillColor(BOARD_COLOR);
+
+	//m_mat[m_lastRow][m_lastColumn].setFillColor();
 }
 
 //-------------------------------------------------
@@ -382,6 +396,7 @@ int Board::handleClick(const sf::Vector2f& location, int last_active)
 			{
 				//if(last_active != CLEAR && last_active != SAVE)
 				m_mat[row][col].setTexture(&m_textures[last_active]);
+				m_mat[row][col].setFillColor(sf::Color::White);
 			}
 		}
 	}

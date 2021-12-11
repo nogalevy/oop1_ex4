@@ -26,14 +26,16 @@ sf::RectangleShape Button::createBtn(int row, int col) const
 	if (m_isClicked)
 	{
 		new_btn.setFillColor(sf::Color::Color(255, 255, 255, 255));
-
-		new_btn.setOutlineThickness(8);
-		new_btn.setOutlineColor(sf::Color::Color(114, 150, 158));
+		new_btn.setSize(sf::Vector2f(BTN_W * 1.08, BTN_H * 1.08));
+		//new_btn.setOutlineThickness(8);
+		//new_btn.setOutlineColor(sf::Color::Color(114, 150, 158));
 	}
 	else
 	{
-		new_btn.setFillColor(sf::Color::Color(219, 249, 255, 215));
+		new_btn.setFillColor(sf::Color::Color(219, 249, 255, 200));
 		new_btn.setOutlineThickness(0);
+		new_btn.setSize(sf::Vector2f(BTN_W, BTN_H));
+
 	}
 	return new_btn;
 }
