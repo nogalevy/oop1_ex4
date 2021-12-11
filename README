@@ -1,24 +1,59 @@
-reset:
-	
-save:
+OOP ex3 - Game Level Editor for Save the King
 
-delete:
+Written by: Tali Kalev (??? ???), ID:208629691
+            Noga Levy (???? ???), ID:315260927
 
+General Description of the Assignment:
+  In this assignment, the user can edit a game level used for the game Save The King.
+  The user can either start editing from a file with a level already created or start
+  a new one. There is a menu with all the objects and a board in which the user can place
+  the objects on.
 
+Design:
+  Classes: Window, Board, Menu, Button, ObjBtn 
+    Window:
+        - deals with display of window and objects on window (menu, board etc)
+        - processes events by sending them to where they are used (board/menu)
+    Board:
+        - deals with loading and saving of board to file
+        - adds and deletes objects from board
+        - draws board onto window
+    Menu
+        - deals with display of buttons (characters, save, delete and clear)
+        - checks with buttons if can be added to board
+        - draws menu onto window
+    Button
+        - deals with design and display of buttons on menu
+    ObjBtn
+        - deals with capabilities of adding objects onto board
 
-king:
-mage:
-warrior:
-theif:
-wall:
-gate:
-fire:
-orc:
-key: ?
-teleport:
-throne:
+Files:
+    Window.h and Window.cpp
+        - deals with window class
+    Board.h and Board.cpp
+        - deals with board class
+    Menu.h and Menu.cpp
+        - deals with menu class
+    Button.h and Button.cpp
+        - deals with button class
+    ObjBtn.h and ObjBtn.cpp
+        - deals with objBtn class
+    colors.h
+        - contains consts of different colours used by sfml library
+    numof.h
+        - contains consts and enums of different objects and images displayed
+    view_constants.h
+        - constains consts used in displaying of objects/window
 
+Main Data Structures and their Jobs:
+	- see Design above
 
-similar members:
-	max 
-	simbol in file
+Notable Algorithms:
+	- no notable algorithms
+
+Known Bugs:
+	- if no object is clicked from menu upon starting, and you click on board, leads to error
+    - if save or clear button is clicked and then the board, leads to error
+
+Other General Notes:
+	- none

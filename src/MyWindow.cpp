@@ -1,5 +1,4 @@
 #include "MyWindow.h"
-#include <iostream>
 
 enum parts {MENU, BOARD, NONE};
 MyWindow::MyWindow() : m_window(sf::VideoMode(D_MENU_WIDTH, 760), "The Window" ), m_board(), m_menu() //make 200 const
@@ -165,10 +164,10 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         }
         else
         {
-            if (m_menu.canAddObj(m_curr_char))
+            if ((m_menu.canAddObj(m_curr_char)) && (m_curr_char != CLEAR) && (m_curr_char != SAVE)) //Tali: Q: doesnt fix problem
             {
                 m_board.handleClick(location, m_curr_char);
-                m_menu.setObjExist(true, m_curr_char);
+                m_menu.setObjExist(true, m_curr_char); //Tali : Q: what happens when save is clicked and then board?
             }
         }
         

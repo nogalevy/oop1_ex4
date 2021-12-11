@@ -6,7 +6,6 @@
 #include "colors.h"
 #include "Button.h"
 #include "ObjBtn.h"
-
 #include <iostream>
 
 class Menu
@@ -15,13 +14,13 @@ public:
 	Menu();
 	Menu(int width);
 	void setSize(int height, int width);
-	int getHeight();
+	int getHeight()const;
 	void drawMenu(sf::RenderWindow& window)const;
 	
 	void setButtonData(std::vector<int> objExists);
-	bool isContain(const sf::Vector2f& location);
+	bool isContain(const sf::Vector2f& location)const;
 	void handleClick(const sf::Vector2f& location, int &last_active);
-	bool canAddObj(int character);
+	bool canAddObj(int character)const;
 	void setObjExist(bool b, int character);
 	void resetBtnsExist();
 

@@ -3,7 +3,6 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "numof.h"
-//#include "Position.h"
 #include "view_constants.h"
 #include <fstream> //for external files
 #include <stdlib.h> //for exit

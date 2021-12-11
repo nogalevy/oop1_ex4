@@ -47,7 +47,7 @@ void Menu::setSize(int height, int width)
 
 //-------------------------------------------------
 
-int Menu::getHeight()
+int Menu::getHeight()const
 {
 	return m_height;
 }
@@ -95,7 +95,7 @@ void Menu::setButtonData(std::vector<int> objExists)
 
 //-------------------------------------------------
 
-bool Menu::isContain(const sf::Vector2f& location)
+bool Menu::isContain(const sf::Vector2f& location)const
 {
 	return m_container.getGlobalBounds().contains(location);
 }
@@ -156,7 +156,7 @@ void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 
 //--------------------------------------------
 
-bool Menu::canAddObj(int character)
+bool Menu::canAddObj(int character)const
 {
 	return m_characters_btns[character].canAddToBoard();
 }
