@@ -75,8 +75,9 @@ void Menu::setButtonData(std::vector<int> objExists)
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 	{
 		if (objExists[i] != 0)
-			std::cout << "setexist to " << i << " to exist =" << objExists[i] << std::endl;
 			m_characters_btns[i].initExists(objExists[i]);
+		
+		if (i == KING) m_characters_btns[i].setIsClicked(true);
 
 		switch (i)
 		{

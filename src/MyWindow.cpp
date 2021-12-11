@@ -9,7 +9,7 @@ MyWindow::MyWindow() : m_window(sf::VideoMode(WINDOW_W, WINDOW_H), TITLE ), m_bo
     m_image.loadFromFile("king.png");
     m_window.setIcon(m_image.getSize().x, m_image.getSize().y, m_image.getPixelsPtr());
     
-    m_curr_char = -1;
+    m_curr_char = KING;
 }
 
 //-------------------------------------------------
