@@ -21,6 +21,7 @@ private:
     //Members
     int m_curr_char;
     sf::RenderWindow m_window;
+    sf::Image m_image;
     Menu m_menu; 
     Board m_board;   
 };

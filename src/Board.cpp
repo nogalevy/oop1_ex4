@@ -11,7 +11,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 	const char* fileName = "level.txt";
 	FILE* file = fopen(fileName, "r");
 
-	if (file != NULL) //if file is not empty
+	if (false /*file != NULL*/) //if file is not empty
 	{
 		//reading size
 		char c;
@@ -46,7 +46,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 		}
 
 		//fill matrix with file board
-		int square_size = 500 / size; //set 500 to const
+		int square_size = (( BOARD_H  )/ size ) - 10; //set 500 to const
 		m_mat = initMat(size, square_size);
 
 		for (int row = 0; row < size; row++)
@@ -72,7 +72,9 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 		std::cout << "Please enter size of board: \n";
 		std::cin >> size;
 
-		int square_size = 500 / size; //set 500 to const
+		int square_size = ((BOARD_H) / size) - 10; //set 500 to const
+
+		//int square_size = 500 / size; //set 500 to const
 		m_mat = initMat(size, square_size);
 
 		for (int i = 0; i < size; i++)
@@ -178,7 +180,6 @@ int Board::deleteObject(const sf::Vector2f& location)
 			if (m_mat[i][j].getGlobalBounds().contains(location))
 			{
 				deletedObj = getObj(i, j);
-				//std::cout << "get obj " << deletedObj << "\n";
 				deleteObjectOnBoard(i, j);
 				return deletedObj;
 			}
@@ -263,14 +264,14 @@ std::vector<int> Board::getObjExists()const
 void Board::drawBoard(sf::RenderWindow &window)
 {
 	int board_size = 500;
-	int square_size = 500 / m_size;
+	int square_size = ((BOARD_H) / m_size) - 10; //set 500 to const
 	//int square_size = (D_MENU_WIDTH - 500) / m_size;
 	int col_offset = (window.getSize().x - board_size) / 2;
 
 	for (int i = 0; i < m_size ; i++)
 		for (int j = 0; j < m_size; j++)
 		{
-			m_mat[i][j].setPosition(j * square_size + col_offset, i * square_size + CON_HEIGHT + 20);
+			//m_mat[i][j].setPosition(j * square_size + col_offset, i * square_size + CON_HEIGHT + 20);
 			window.draw(m_mat[i][j]);
 
 		}
@@ -290,9 +291,12 @@ void Board::initTextures()
 
 void Board::initSquare(int row, int col, int square_size)
 {
-	m_mat[row][col].setOutlineThickness(1);
-	m_mat[row][col].setOutlineColor(sf::Color::Black);
-	m_mat[row][col].setPosition(col * square_size, row * square_size + CON_HEIGHT + 20);
+	int board_size = 500;
+	//int square_size = 500 / m_size;
+	//m_mat[row][col].setOutlineThickness(1);
+	//m_mat[row][col].setOutlineColor(sf::Color::Black);
+	int col_offset = (WINDOW_W - board_size) / 2;
+	m_mat[row][col].setPosition(col * (square_size + 7 ) + col_offset, row * ( square_size + 7 ) + MENU_H + 15);
 }
 
 //-------------------------------------------------
