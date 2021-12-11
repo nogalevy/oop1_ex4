@@ -118,6 +118,17 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 
 void MyWindow::handleHover(const sf::Vector2f& location)
 {
+    //sf::Cursor cursor;
     if (checkLocation(location) == BOARD)
+    {
         m_board.handleHover(location);
+        /*if (cursor.loadFromSystem(sf::Cursor::Arrow))
+            m_window.setMouseCursor(cursor);*/
+    }
+    
+   /* else
+    {
+        if (cursor.loadFromSystem(sf::Cursor::Hand))
+            m_window.setMouseCursor(cursor);
+    }*/
 }
