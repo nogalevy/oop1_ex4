@@ -1,17 +1,14 @@
 #include "MyWindow.h"
 
 enum parts {MENU, BOARD, NONE};
-MyWindow::MyWindow() : m_window(sf::VideoMode(WINDOW_W, WINDOW_H), "Save The King - Level Generator" ), m_board(), m_menu() //make 200 const
+MyWindow::MyWindow() : m_window(sf::VideoMode(WINDOW_W, WINDOW_H), TITLE ), m_board(), m_menu()
 {
     m_menu.setButtonData(m_board.getObjExists());
+
     m_image = sf::Image{};
-    if (!m_image.loadFromFile("king.png"))
-    {
-        // Error handling...
-    }
+    m_image.loadFromFile("king.png");
     m_window.setIcon(m_image.getSize().x, m_image.getSize().y, m_image.getPixelsPtr());
-    //int windowHeight = m_menu.getHeight() + (m_board.getSize()) +  100 ;
-    //m_window.setSize(sf::Vector2u(D_MENU_WIDTH, windowHeight));
+    
     m_curr_char = -1;
 }
 
@@ -55,7 +52,9 @@ void MyWindow::run()
                 break;
             }
         }
+ 
         m_window.clear(sf::Color::Color(231, 214, 162));
+        
         m_menu.drawMenu(m_window);
         m_board.drawBoard(m_window);
         m_window.display();

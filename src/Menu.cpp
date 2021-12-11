@@ -25,17 +25,17 @@ Menu::Menu() : m_width(WINDOW_W), m_height(MENU_H) ,m_container(sf::Vector2f(WIN
 		m_game_btns[i].setBtnTexture(m_texture[(NUM_OF_ICONS + i )]);
 	}
 }
-
-//-------------------------------------------------
-// 
-Menu::Menu(int width) : m_container(sf::Vector2f(width, D_MENU_HEIGHT)), m_height(CON_HEIGHT) , m_width(width)
-{
-	for (int i = 0; i < NUM_OF_ICONS; ++i)
-		m_texture[i].loadFromFile(PIC_NAMES[i] + ".png");
-
-	//check width to do responsive
-	setSize(width, CON_HEIGHT + 20);
-}
+//
+////-------------------------------------------------
+//// 
+//Menu::Menu(int width) : m_container(sf::Vector2f(width, D_MENU_HEIGHT)), m_height(MENU_H) , m_width(width)
+//{
+//	for (int i = 0; i < NUM_OF_ICONS; ++i)
+//		m_texture[i].loadFromFile(PIC_NAMES[i] + ".png");
+//
+//	//check width to do responsive
+//	setSize(width, MENU_H + 20);
+//}
 
 //-------------------------------------------------
 

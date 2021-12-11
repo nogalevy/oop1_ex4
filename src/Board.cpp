@@ -271,9 +271,7 @@ void Board::drawBoard(sf::RenderWindow &window)
 	for (int i = 0; i < m_size ; i++)
 		for (int j = 0; j < m_size; j++)
 		{
-			//m_mat[i][j].setPosition(j * square_size + col_offset, i * square_size + CON_HEIGHT + 20);
 			window.draw(m_mat[i][j]);
-
 		}
 }
 
@@ -283,7 +281,11 @@ void Board::initTextures()
 {
 	m_textures.resize(NUM_OF_ICONS);
 	for (int i = 0; i < NUM_OF_ICONS; i++)
+	{
 		m_textures[i].loadFromFile(PIC_NAMES[i] + ".png");
+		m_textures[i].setSmooth(true);
+	}
+
 
 }
 
