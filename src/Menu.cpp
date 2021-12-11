@@ -25,7 +25,7 @@ Menu::Menu() : m_width(WINDOW_W), m_height(MENU_H) ,m_container(sf::Vector2f(WIN
 		m_game_btns[i].setBtnTexture(m_texture[(NUM_OF_ICONS + i )]);
 	}
 }
-//
+
 ////-------------------------------------------------
 //// 
 //Menu::Menu(int width) : m_container(sf::Vector2f(width, D_MENU_HEIGHT)), m_height(MENU_H) , m_width(width)
@@ -155,6 +155,8 @@ bool Menu::canAddObj(int character)const
 {
 	return m_characters_btns[character].canAddToBoard();
 }
+
+//--------------------------------------------
 
 void Menu::resetBtnsExist() 
 {

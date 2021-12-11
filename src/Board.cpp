@@ -11,7 +11,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 	const char* fileName = "level.txt";
 	FILE* file = fopen(fileName, "r");
 
-	if (false /*file != NULL*/) //if file is not empty
+	if (file != NULL) //if file is not empty
 	{
 		//reading size
 		char c;
@@ -265,7 +265,6 @@ void Board::drawBoard(sf::RenderWindow &window)
 {
 	int board_size = 500;
 	int square_size = ((BOARD_H) / m_size) - 10; //set 500 to const
-	//int square_size = (D_MENU_WIDTH - 500) / m_size;
 	int col_offset = (window.getSize().x - board_size) / 2;
 
 	for (int i = 0; i < m_size ; i++)
