@@ -3,7 +3,6 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "numof.h"
-//#include "Position.h"
 #include "view_constants.h"
 #include <fstream> //for external files
 #include <stdlib.h> //for exit
@@ -30,7 +29,6 @@ public:
 
 private:
 	// to char btn - another class;
-	//Position m_char_position_on_board;
 	int m_max;
 	int m_exist;
 

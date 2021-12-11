@@ -3,13 +3,14 @@
 
 const int INFINITIE = -1; //infinity || infinite Tali:Q: where do you want to put this?
 
+//-------------------------------------------------
+
 Button::Button() 
 	: m_btn_width(D_BTN_WIDTH), m_btn_height(D_BTN_HEIGHT), m_isClicked(false)
 {}
 
 //-------------------------------------------------
 
-//TODO: add int exist
 Button::Button(sf::Texture texture)
 	: m_btn_width(D_BTN_WIDTH), m_btn_height(D_BTN_HEIGHT), m_texture(texture), m_isClicked(false)
 {}
