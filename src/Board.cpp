@@ -8,7 +8,7 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 	initTextures();
 
 	//opening file
-	const char* fileName = "level.txt";
+	const char* fileName = "Board.txt";
 	FILE* file = fopen(fileName, "r");
 
 	if (file != NULL) //if file is not empty
@@ -69,35 +69,20 @@ Board::Board() :m_size(0), m_lastRow(0), m_lastColumn(0)
 		for (int i = 0; i < size; i++)
 			delete [] fileBoard[i];
 		delete [] fileBoard;
+		m_size = size;
 	}
 	else //if file is empty
 	{
-		std::cout << "Please enter size of board: \n";
-		std::cin >> size;
-
-		int square_size = ((BOARD_H) / size) - 10; //set 500 to const
-
-		//int square_size = 500 / size; //set 500 to const
-		m_mat = initMat(size, square_size);
-
-		for (int i = 0; i < size; i++)
-		{
-			for (int j = 0; j < size; j++)
-			{
-				initSquare(i, j, square_size);
-				m_mat[i][j].setTexture(NULL);
-				m_mat[i][j].setFillColor(BOARD_COLOR);
-			}
-		}
+		setBoard();
 	}
-	m_size = size;
+	
 }
 
 //-------------------------------------------------
 
 void Board::saveBoard()const
 {
-	const char* fileName = "level";
+	const char* fileName = "Board";
 
 	//opening file or creating file (overwrites if exists)
 	FILE* file = fopen(fileName, "w+"); 
@@ -112,45 +97,7 @@ void Board::saveBoard()const
 			int obj = getObj(i, j);
 			char c = (obj != -1) ? SIMBOLS[obj] : ' ';
 			fputc(c, file);
-			/*switch (obj)
-			{
-			case KING:
-				fprintf(file, "K");
-				break;
-			case WIZARD:
-				fprintf(file, "M");
-				break;
-			case WARRIOR:
-				fprintf(file, "W");
-				break;
-			case THIEF:
-				fprintf(file, "T");
-				break;
-			case WALL:
-				fprintf(file, "=");
-				break;
-			case GATE:
-				fprintf(file, "#");
-				break;
-			case FIRE:
-				fprintf(file, "*");
-				break;
-			case ORC:
-				fprintf(file, "!");
-				break;
-			case PORTAL:
-				fprintf(file, "X");
-				break;
-			case THRONE:
-				fprintf(file, "@");
-				break;
-			case KEY:
-				fprintf(file, "F");
-				break;
-			default:
-				fprintf(file, " ");
-				break;
-			}*/
+	
 		}
 		fprintf(file, "\n");
 	}
@@ -195,6 +142,8 @@ int Board::deleteObject(const sf::Vector2f& location)
 	return -1;
 }
 
+//-------------------------------------------------
+
 int Board::getObj(int i, int j)const
 {
 	if (m_mat[i][j].getTexture() == &m_textures[KING])
@@ -220,6 +169,28 @@ int Board::getObj(int i, int j)const
 	else if (m_mat[i][j].getTexture() == &m_textures[KEY])
 		return KEY;
 	else return - 1;
+}
+
+//-------------------------------------------------
+
+void Board::setBoard()
+{
+	std::cout << "Please enter size of board: \n";
+	std::cin >> m_size;
+
+	int square_size = ((BOARD_H) / m_size) - 10;
+
+	m_mat = initMat(m_size, square_size);
+
+	for (int i = 0; i < m_size; i++)
+	{
+		for (int j = 0; j < m_size; j++)
+		{
+			initSquare(i, j, square_size);
+			m_mat[i][j].setTexture(NULL);
+			m_mat[i][j].setFillColor(BOARD_COLOR);
+		}
+	}
 }
 
 //-------------------------------------------------
@@ -291,8 +262,6 @@ void Board::initTextures()
 		m_textures[i].loadFromFile(PIC_NAMES[i] + ".png");
 		m_textures[i].setSmooth(true);
 	}
-
-
 }
 
 //-------------------------------------------------
@@ -353,24 +322,39 @@ int Board::getCharObj(char c)const
 
 //-------------------------------------------------
 
-void Board::handleHover(const sf::Vector2f& location)
+void Board::handleHover(const sf::Vector2f& location, int last)
 {
 	for (int i = 0; i < m_size; i++)
 	{
 		for (int j = 0; j < m_size; j++)
 		{
-			if (m_mat[i][j].getGlobalBounds().contains(location) &&
-				m_mat[i][j].getTexture() == nullptr)
-			{
-				if (m_mat[m_lastRow][m_lastColumn].getTexture())
-					m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
-				else
-					m_mat[m_lastRow][m_lastColumn].setFillColor(BOARD_COLOR);
 
-				m_mat[i][j].setFillColor(sf::Color::Cyan);
-				m_lastRow = i;
-				m_lastColumn = j;
-				return;
+			if (m_mat[i][j].getGlobalBounds().contains(location))
+			{
+				if (last != DELETE && m_mat[i][j].getTexture() == nullptr)
+				{
+					if (m_mat[m_lastRow][m_lastColumn].getTexture())
+						m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
+					else
+						m_mat[m_lastRow][m_lastColumn].setFillColor(BOARD_COLOR);
+
+						m_mat[i][j].setFillColor(sf::Color::Cyan);
+						m_lastRow = i;
+						m_lastColumn = j;
+					return;
+				}
+				else if (last == DELETE && m_mat[i][j].getTexture() != nullptr) //Tali : ask noga
+				{
+					if (m_mat[m_lastRow][m_lastColumn].getTexture())
+						m_mat[m_lastRow][m_lastColumn].setFillColor(sf::Color::White);
+					else
+						m_mat[m_lastRow][m_lastColumn].setFillColor(BOARD_COLOR);
+
+					m_mat[i][j].setFillColor(sf::Color::Cyan);
+					m_lastRow = i;
+					m_lastColumn = j;
+					return;
+				}
 			}
 		}
 	}

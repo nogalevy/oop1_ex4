@@ -19,9 +19,10 @@ public:
 	void saveBoard()const; //from save button on menu
 	void clearBoard(); // from clear button on menu
 	int deleteObject(const sf::Vector2f& location);
-	void handleHover(const sf::Vector2f& location);
+	void handleHover(const sf::Vector2f& location, int last);
 	int handleClick(const sf::Vector2f& location, int last_active);
 	int getObj(int i, int j)const;
+	void setBoard();
 
 	int getSize()const;
 	std::vector<int> getObjExists()const;

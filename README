@@ -52,7 +52,11 @@ Notable Algorithms:
 	- no notable algorithms
 
 Known Bugs:
-	- if no object is clicked from menu upon starting, and you click on board, leads to error
+	- no known bugs
 
 Other General Notes:
 	- none
+
+Board.txt File Format:
+    The first value in the file will be one integer that will be the side lengths of the square board.
+    On the following line the board will be displayed using the character representations.

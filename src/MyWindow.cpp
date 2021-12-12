@@ -86,7 +86,12 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         else if (m_curr_char == CLEAR)
         {
            m_board.clearBoard();
-           m_menu.resetBtnsExist(); // 
+           m_menu.resetBtnsExist(); 
+           m_window.clear(WINDOW_COLOR);
+           m_menu.drawMenu(m_window);
+           m_board.drawBoard(m_window);
+           m_window.display();
+           m_board.setBoard();
         }
     }
 
@@ -104,11 +109,11 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         {
             if ((m_curr_char != CLEAR) && (m_curr_char != SAVE))
             {
-                if (m_menu.canAddObj(m_curr_char)) //Tali: Q: doesnt fix problem
+                if (m_menu.canAddObj(m_curr_char)) 
                 {
                     if (m_board.handleClick(location, m_curr_char) > 0)
                     {
-                        m_menu.setObjExist(true, m_curr_char); //Tali : Q: what happens when save is clicked and then board?
+                        m_menu.setObjExist(true, m_curr_char);
                     }
                 }
             }
@@ -120,10 +125,14 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 
 void MyWindow::handleHover(const sf::Vector2f& location)
 {
+    /*
+        send m_curr_char - in handleHover of board, add tnai for hovering over object if m_curr_char == delete
+    */
+
     //sf::Cursor cursor;
     if (checkLocation(location) == BOARD)
     {
-        m_board.handleHover(location);
+        m_board.handleHover(location, m_curr_char);
         /*if (cursor.loadFromSystem(sf::Cursor::Arrow))
             m_window.setMouseCursor(cursor);*/
     }
