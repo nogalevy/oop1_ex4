@@ -110,7 +110,9 @@ void Board::saveBoard()const
 		for (int j = 0; j < m_size; j++)
 		{
 			int obj = getObj(i, j);
-			switch (obj)
+			char c = (obj != -1) ? SIMBOLS[obj] : ' ';
+			fputc(c, file);
+			/*switch (obj)
 			{
 			case KING:
 				fprintf(file, "K");
@@ -148,7 +150,7 @@ void Board::saveBoard()const
 			default:
 				fprintf(file, " ");
 				break;
-			}
+			}*/
 		}
 		fprintf(file, "\n");
 	}
