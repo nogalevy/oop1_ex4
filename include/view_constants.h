@@ -10,7 +10,7 @@ const std::string TITLE = "Save The King - Level Generator"; //window title
 const int WINDOW_H = 800;  //window width
 const int WINDOW_W = 1270; //window height
 
-const int MENU_H = 190;	   //menu height
+const int MENU_H = 180;	   //menu height
 
 const int BOARD_H = WINDOW_H - MENU_H - 20; //board height
 
