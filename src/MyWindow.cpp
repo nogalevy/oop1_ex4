@@ -19,6 +19,11 @@ void MyWindow::run()
         sf::Event event;
         sf::Vector2f location;
 
+        m_window.clear(WINDOW_COLOR);
+        m_menu.drawMenu(m_window);
+        m_board.drawBoard(m_window);
+        m_window.display();
+
         if(event = sf::Event{}; m_window.waitEvent(event))
         {
             switch (event.type)
@@ -51,10 +56,7 @@ void MyWindow::run()
             }
         }
  
-        m_window.clear(WINDOW_COLOR);
-        m_menu.drawMenu(m_window);
-        m_board.drawBoard(m_window);
-        m_window.display();
+        
     }
 }
 
@@ -97,7 +99,7 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         int deleted_obj;
         if (m_curr_char == DELETE)
         {
-            deleted_obj = m_board.handleClick(location, m_curr_char);//takes m_curr_char which is delete button or character that can appear as much as we want
+            deleted_obj = m_board.handleClick(location, m_curr_char);
             if (deleted_obj >= 0)
                 m_menu.setObjExist(false, deleted_obj);     
             return;

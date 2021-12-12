@@ -1,20 +1,13 @@
-#include "..\include\ObjBtn.h"
 #include "ObjBtn.h"
 
+
+//-------------------------------------------------
 
 ObjBtn::ObjBtn() : Button()
 {
 	m_max = -1;
 	m_exist = 0;
 }
-
-//-------------------------------------------------
-
-//ObjBtn::ObjBtn(int max, sf::Texture texture) : Button(texture)
-//{
-//	m_max = max;
-//	m_exist = 0;
-//}
 
 //-------------------------------------------------
 
@@ -34,7 +27,6 @@ void ObjBtn::setExist(bool op)
 
 bool ObjBtn::canAddToBoard() const
 {
-	std::cout << "in btn: max: " << m_max << "exist: " << m_exist <<std::endl;
 	return m_max == -1 ? true : m_max > m_exist;
 }
 

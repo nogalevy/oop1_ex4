@@ -5,6 +5,7 @@
 
 Menu::Menu() : m_container(sf::Vector2f(WINDOW_W, MENU_H))
 {
+	int index = 0;
 	m_container.setFillColor(MENU_COLOR);
 	m_texture.resize(NUM_OF_ICONS + GAME_BTN_NUM);
 
@@ -21,8 +22,9 @@ Menu::Menu() : m_container(sf::Vector2f(WINDOW_W, MENU_H))
 	m_game_btns.resize(GAME_BTN_NUM);
 	for (int i = 0; i < GAME_BTN_NUM; i++)
 	{
+		index = (NUM_OF_ICONS + i);
 		m_game_btns[i].setBtnSize(BTN_W, BTN_H);
-		m_game_btns[i].setBtnTexture(m_texture[(NUM_OF_ICONS + i )]);
+		m_game_btns[i].setBtnTexture(m_texture[index]);
 	}
 }
 

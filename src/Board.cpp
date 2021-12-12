@@ -268,11 +268,8 @@ void Board::initTextures()
 
 void Board::initSquare(int row, int col, int square_size)
 {
-	int board_size = BOARD_H;
-	//int square_size = 500 / m_size;
-	//m_mat[row][col].setOutlineThickness(1);
-	//m_mat[row][col].setOutlineColor(sf::Color::Black);
-	int col_offset = (WINDOW_W - board_size) / 2;
+	//int board_size = BOARD_H;
+	int col_offset = (WINDOW_W - BOARD_H) / 2;
 	m_mat[row][col].setPosition(col * (square_size + 7 ) + col_offset, row * ( square_size + 7 ) + MENU_H + 15);
 }
 
