@@ -3,7 +3,7 @@
 
 //-------------------------------------------------
 
-Menu::Menu() : m_width(WINDOW_W), m_height(MENU_H) ,m_container(sf::Vector2f(WINDOW_W, MENU_H))//make 200 consts
+Menu::Menu() : m_container(sf::Vector2f(WINDOW_W, MENU_H))
 {
 	m_container.setFillColor(MENU_COLOR);
 	m_texture.resize(NUM_OF_ICONS + GAME_BTN_NUM);
@@ -38,19 +38,19 @@ Menu::Menu() : m_width(WINDOW_W), m_height(MENU_H) ,m_container(sf::Vector2f(WIN
 //}
 
 //-------------------------------------------------
-
-void Menu::setSize(int height, int width)
-{
-	m_height = height;
-	m_width = width;
-}
+//
+//void Menu::setSize(int height, int width)
+//{
+//	m_height = height;
+//	m_width = width;
+//}
 
 //-------------------------------------------------
-
-int Menu::getHeight()const
-{
-	return m_height;
-}
+//
+//int Menu::getHeight()const
+//{
+//	return m_height;
+//}
 
 //-------------------------------------------------
 

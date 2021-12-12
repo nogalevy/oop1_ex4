@@ -6,6 +6,7 @@
 #include "view_constants.h"
 #include <iostream>
 
+enum parts { MENU, BOARD, NONE };
 
 class MyWindow
 {
@@ -17,6 +18,7 @@ private:
     void handleClick(const sf::Vector2f& location);
     void handleHover(const sf::Vector2f& location);
     int checkLocation(const sf::Vector2f& location);
+    void setIcon();
 
     //Members
     int m_curr_char;

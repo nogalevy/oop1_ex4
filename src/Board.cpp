@@ -350,7 +350,7 @@ void Board::handleHover(const sf::Vector2f& location, int last)
 					else
 						m_mat[m_lastRow][m_lastColumn].setFillColor(BOARD_COLOR);
 
-					m_mat[i][j].setFillColor(sf::Color::Cyan);
+					m_mat[i][j].setFillColor(BOARD_HOVER_COLOR);
 					m_lastRow = i;
 					m_lastColumn = j;
 					return;

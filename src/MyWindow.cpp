@@ -1,14 +1,12 @@
 #include "MyWindow.h"
 
-enum parts {MENU, BOARD, NONE};
+
+//-------------------------------------------------
+
 MyWindow::MyWindow() : m_window(sf::VideoMode(WINDOW_W, WINDOW_H), TITLE ), m_board(), m_menu()
 {
     m_menu.setButtonData(m_board.getObjExists());
-
-    m_image = sf::Image{};
-    m_image.loadFromFile("king.png");
-    m_window.setIcon(m_image.getSize().x, m_image.getSize().y, m_image.getPixelsPtr());
-    
+    setIcon();
     m_curr_char = KING;
 }
 
@@ -54,7 +52,6 @@ void MyWindow::run()
         }
  
         m_window.clear(WINDOW_COLOR);
-        
         m_menu.drawMenu(m_window);
         m_board.drawBoard(m_window);
         m_window.display();
@@ -109,7 +106,7 @@ void MyWindow::handleClick(const sf::Vector2f& location)
         {
             if ((m_curr_char != CLEAR) && (m_curr_char != SAVE))
             {
-                if (m_menu.canAddObj(m_curr_char)) 
+                if (m_menu.canAddObj(m_curr_char))
                 {
                     if (m_board.handleClick(location, m_curr_char) > 0)
                     {
@@ -142,4 +139,13 @@ void MyWindow::handleHover(const sf::Vector2f& location)
         if (cursor.loadFromSystem(sf::Cursor::Hand))
             m_window.setMouseCursor(cursor);
     }*/
+}
+
+//-------------------------------------------------
+
+void MyWindow::setIcon()
+{
+    m_image = sf::Image{};
+    m_image.loadFromFile("king.png");
+    m_window.setIcon(m_image.getSize().x, m_image.getSize().y, m_image.getPixelsPtr());
 }
