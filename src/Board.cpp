@@ -270,9 +270,9 @@ std::vector<int> Board::getObjExists()const
 
 void Board::drawBoard(sf::RenderWindow &window)
 {
-	int board_size = 500;
-	int square_size = ((BOARD_H) / m_size) - 10; //set 500 to const
-	int col_offset = (window.getSize().x - board_size) / 2;
+	//int board_size = 500;
+	//int square_size = ((BOARD_H + ) / m_size) - 10; //set 500 to const
+	//int col_offset = (window.getSize().x - board_size) / 2;
 
 	for (int i = 0; i < m_size ; i++)
 		for (int j = 0; j < m_size; j++)
@@ -299,7 +299,7 @@ void Board::initTextures()
 
 void Board::initSquare(int row, int col, int square_size)
 {
-	int board_size = 500;
+	int board_size = BOARD_H;
 	//int square_size = 500 / m_size;
 	//m_mat[row][col].setOutlineThickness(1);
 	//m_mat[row][col].setOutlineColor(sf::Color::Black);
@@ -399,6 +399,7 @@ int Board::handleClick(const sf::Vector2f& location, int last_active)
 				//if(last_active != CLEAR && last_active != SAVE)
 				m_mat[row][col].setTexture(&m_textures[last_active]);
 				m_mat[row][col].setFillColor(sf::Color::White);
+				return 1;
 			}
 		}
 	}

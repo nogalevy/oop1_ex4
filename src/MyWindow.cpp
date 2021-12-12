@@ -106,8 +106,10 @@ void MyWindow::handleClick(const sf::Vector2f& location)
             {
                 if (m_menu.canAddObj(m_curr_char)) //Tali: Q: doesnt fix problem
                 {
-                    m_board.handleClick(location, m_curr_char);
-                    m_menu.setObjExist(true, m_curr_char); //Tali : Q: what happens when save is clicked and then board?
+                    if (m_board.handleClick(location, m_curr_char) > 0)
+                    {
+                        m_menu.setObjExist(true, m_curr_char); //Tali : Q: what happens when save is clicked and then board?
+                    }
                 }
             }
         }
