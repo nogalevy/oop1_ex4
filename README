@@ -1,7 +1,7 @@
 OOP ex3 - Game Level Editor for Save the King
 
-Written by: Tali Kalev (??? ???), ID:208629691
-            Noga Levy (???? ???), ID:315260927
+Written by: Tali Kalev (טלי כלב), ID:208629691
+            Noga Levy (נוגה לוי), ID:315260927
 
 General Description of the Assignment:
   In this assignment, the user can edit a game level used for the game Save The King.
@@ -11,10 +11,10 @@ General Description of the Assignment:
 
 Design:
   Classes: Window, Board, Menu, Button, ObjBtn 
-    Window:
+    Window
         - deals with display of window and objects on window (menu, board etc)
         - processes events by sending them to where they are used (board/menu)
-    Board:
+    Board
         - deals with loading and saving of board to file
         - adds and deletes objects from board
         - draws board onto window
@@ -26,6 +26,12 @@ Design:
         - deals with design and display of buttons on menu
     ObjBtn
         - deals with capabilities of adding objects onto board
+   Other:
+        King, Mage, Warrior, Thief and throne can appear only once on the board. If the user 
+        would like to change one of the locations of these objects and it already appears on 
+        the board, they must first erase the previous appearance before placing in a new spot.
+        The board can be a square only (all side lengths are equal). When the program starts, 
+        the first character (King) is already chosen.
 
 Files:
     Window.h and Window.cpp
@@ -43,7 +49,7 @@ Files:
     numof.h
         - contains consts and enums of different objects and images displayed
     view_constants.h
-        - constains consts used in displaying of objects/window
+        - contains consts used in displaying of objects/window
 
 Main Data Structures and their Jobs:
 	- see Design above
