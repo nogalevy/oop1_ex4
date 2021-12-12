@@ -5,7 +5,7 @@
 
 ObjBtn::ObjBtn() : Button()
 {
-	m_max = -1;
+	m_max = INFINITIE;
 	m_exist = 0;
 }
 
@@ -27,7 +27,7 @@ void ObjBtn::setExist(bool op)
 
 bool ObjBtn::canAddToBoard() const
 {
-	return m_max == -1 ? true : m_max > m_exist;
+	return m_max == INFINITIE ? true : m_max > m_exist;
 }
 
 //-------------------------------------------------

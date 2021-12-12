@@ -54,9 +54,7 @@ void MyWindow::run()
             default:
                 break;
             }
-        }
- 
-        
+        }   
     }
 }
 

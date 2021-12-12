@@ -28,32 +28,6 @@ Menu::Menu() : m_container(sf::Vector2f(WINDOW_W, MENU_H))
 	}
 }
 
-////-------------------------------------------------
-//// 
-//Menu::Menu(int width) : m_container(sf::Vector2f(width, D_MENU_HEIGHT)), m_height(MENU_H) , m_width(width)
-//{
-//	for (int i = 0; i < NUM_OF_ICONS; ++i)
-//		m_texture[i].loadFromFile(PIC_NAMES[i] + ".png");
-//
-//	//check width to do responsive
-//	setSize(width, MENU_H + 20);
-//}
-
-//-------------------------------------------------
-//
-//void Menu::setSize(int height, int width)
-//{
-//	m_height = height;
-//	m_width = width;
-//}
-
-//-------------------------------------------------
-//
-//int Menu::getHeight()const
-//{
-//	return m_height;
-//}
-
 //-------------------------------------------------
 
 void Menu::drawMenu(sf::RenderWindow& window) const
@@ -107,6 +81,7 @@ bool Menu::isContain(const sf::Vector2f& location)const
 
 void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 {
+	int index = 0;
 	for (int i = 0; i < NUM_OF_ICONS; i++)
 	{
 		sf::RectangleShape curr_rect = m_characters_btns[i].createBtn(i * (BTN_W + BTN_SPACE), 0);
@@ -120,7 +95,8 @@ void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 				}
 				else if (last_active >= NUM_OF_ICONS)
 				{
-					m_game_btns[last_active - NUM_OF_ICONS].setIsClicked(false);
+					index = last_active - NUM_OF_ICONS;
+					m_game_btns[index].setIsClicked(false);
 				}
 			}		
 			m_characters_btns[i].setIsClicked(true);
@@ -142,7 +118,8 @@ void Menu::handleClick(const sf::Vector2f& location, int &last_active)
 				}
 				else if (last_active >= NUM_OF_ICONS)
 				{
-					m_game_btns[last_active - NUM_OF_ICONS].setIsClicked(false);
+					index = last_active - NUM_OF_ICONS;
+					m_game_btns[index].setIsClicked(false);
 				}
 			}
 			m_game_btns[i].setIsClicked(true);

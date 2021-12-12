@@ -1,18 +1,17 @@
 #include "Button.h"
-//#include "view_constants.h"
 
-const int INFINITIE = -1; //infinity || infinite Tali:Q: where do you want to put this?
+
 
 //-------------------------------------------------
 
 Button::Button() 
-	: m_btn_width(BTN_W), m_btn_height(BTN_H), m_isClicked(false)
+	: m_btn_width(BTN_W < BTN_H ? BTN_W : BTN_H), m_btn_height(BTN_W < BTN_H ? BTN_W : BTN_H), m_isClicked(false)
 {}
 
 //-------------------------------------------------
 
 Button::Button(sf::Texture texture)
-	: m_btn_width(BTN_W), m_btn_height(BTN_H), m_texture(texture), m_isClicked(false)
+	: m_btn_width(BTN_W < BTN_H ? BTN_W : BTN_H), m_btn_height(BTN_W < BTN_H ? BTN_W : BTN_H), m_texture(texture), m_isClicked(false)
 {}
 
 //-------------------------------------------------
@@ -26,16 +25,13 @@ sf::RectangleShape Button::createBtn(int row, int col) const
 	if (m_isClicked)
 	{
 		new_btn.setFillColor(sf::Color::Color(255, 255, 255, 255));
-		new_btn.setSize(sf::Vector2f(BTN_W * 1.08, BTN_H * 1.08));
-		//new_btn.setOutlineThickness(8);
-		//new_btn.setOutlineColor(sf::Color::Color(114, 150, 158));
+		new_btn.setSize(sf::Vector2f(m_btn_width * 1.08, m_btn_height * 1.08));
 	}
 	else
 	{
-		new_btn.setFillColor(sf::Color::Color(219, 249, 255, 200));
+		new_btn.setFillColor(sf::Color::Color(219, 249, 255, 190));
 		new_btn.setOutlineThickness(0);
-		new_btn.setSize(sf::Vector2f(BTN_W, BTN_H));
-
+		new_btn.setSize(sf::Vector2f(m_btn_width, m_btn_height));
 	}
 	return new_btn;
 }

@@ -10,6 +10,7 @@
 #include <string>
 #include <string.h>
 
+const int INFINITIE = -1;
 
 class Button
 {
