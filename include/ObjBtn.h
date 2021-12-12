@@ -15,7 +15,7 @@ class ObjBtn : public Button
 {
 public:
 	ObjBtn();
-	ObjBtn(int max, sf::Texture texture); //add exist
+	// ObjBtn(int max, sf::Texture texture); //add exist
 
 	//char btn
 	void setMax(const int max);
@@ -23,13 +23,9 @@ public:
 	bool canAddToBoard()const;
 	void initExists(int num);
 	void initMax(int num);
-
 	int getExist()const;
 
-
 private:
-	// to char btn - another class;
 	int m_max;
 	int m_exist;
-
 };

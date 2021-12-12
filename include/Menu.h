@@ -25,7 +25,8 @@ private:
 	sf::Color color = sf::Color::Color(24, 2, 134);
 	sf::RectangleShape m_container;	
 	std::vector<sf::Texture> m_texture;
-	std::vector<ObjBtn> m_characters_btns;
+
+	std::vector<ObjBtn> m_characters_btns; 
 	std::vector<Button> m_game_btns;
 
 };

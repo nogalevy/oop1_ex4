@@ -23,7 +23,6 @@ public:
 	void setIsClicked(const bool b);
 
 private:
-
 	int m_btn_width;
 	int m_btn_height;
 	sf::Texture m_texture;

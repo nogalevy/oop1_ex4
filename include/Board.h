@@ -9,8 +9,6 @@
 #include <stdlib.h> //for exit
 #include <iostream>
 
-//class MyWindow; Tali:Q: We dont need this... why did we think we did?
-
 class Board
 {
 public:

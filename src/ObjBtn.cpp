@@ -10,11 +10,11 @@ ObjBtn::ObjBtn() : Button()
 
 //-------------------------------------------------
 
-ObjBtn::ObjBtn(int max, sf::Texture texture) : Button(texture)
-{
-	m_max = max;
-	m_exist = 0;
-}
+//ObjBtn::ObjBtn(int max, sf::Texture texture) : Button(texture)
+//{
+//	m_max = max;
+//	m_exist = 0;
+//}
 
 //-------------------------------------------------
 
