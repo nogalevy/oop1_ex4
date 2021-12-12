@@ -124,23 +124,19 @@ void MyWindow::handleClick(const sf::Vector2f& location)
 
 void MyWindow::handleHover(const sf::Vector2f& location)
 {
-    /*
-        send m_curr_char - in handleHover of board, add tnai for hovering over object if m_curr_char == delete
-    */
-
-    //sf::Cursor cursor;
+    sf::Cursor cursor;
     if (checkLocation(location) == BOARD)
     {
         m_board.handleHover(location, m_curr_char);
-        /*if (cursor.loadFromSystem(sf::Cursor::Arrow))
-            m_window.setMouseCursor(cursor);*/
+        if (cursor.loadFromSystem(sf::Cursor::Arrow))
+            m_window.setMouseCursor(cursor);
     }
     
-   /* else
+    else
     {
         if (cursor.loadFromSystem(sf::Cursor::Hand))
             m_window.setMouseCursor(cursor);
-    }*/
+    }
 }
 
 //-------------------------------------------------
